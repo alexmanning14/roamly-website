@@ -38,8 +38,15 @@
           <h2>Information We Collect</h2>
           <p>
             Roamly stores the locations you mark as visited, along with any notes, photos,
-            and memories you add. This data is stored locally on your device and synced via iCloud
-            to your other devices.
+            and memories you add. If you create an account, your data — including itineraries,
+            published posts, bookmarks, and profile information — is stored in Google Firebase
+            (Firestore and Firebase Storage). Some data is also cached locally on your device.
+          </p>
+          <p>
+            If you create an account, we collect the authentication information you provide.
+            You can sign in with email and password, Google Sign-In, or Apple Sign-In. When
+            using Google or Apple Sign-In, we receive only the information those services share
+            (typically your name and email address).
           </p>
           <p>
             If you sign up for our mailing list or contact us, we collect your email address
@@ -52,8 +59,9 @@
           <h2>How We Use Your Data</h2>
           <p>Your data is used to:</p>
           <ul>
-            <li>Display your 3D globe, visited locations, and travel journal entries</li>
-            <li>Sync your data across your devices via iCloud</li>
+            <li>Display your 3D globe, visited locations, itineraries, and travel journal entries</li>
+            <li>Store and sync your data securely via Firebase</li>
+            <li>Enable community features such as publishing itineraries, browsing others' posts, and bookmarking</li>
             <li>Send you updates if you subscribe to our mailing list</li>
             <li>Respond to your messages if you contact us</li>
           </ul>
@@ -61,32 +69,41 @@
             <strong>We do not sell your personal data to third parties.</strong>
           </p>
 
-          <h2>iCloud &amp; Data Storage</h2>
+          <h2>Firebase &amp; Data Storage</h2>
           <p>
-            Roamly uses Apple's iCloud to sync your journal data across devices.
-            Your data is stored securely using Apple's infrastructure and encryption.
-            We do not have access to your iCloud data.
+            Roamly uses Google Firebase services to store and manage your data. This includes
+            Firebase Authentication for account management, Cloud Firestore for storing
+            itineraries and travel data, and Firebase Storage for photos. Your data is stored
+            securely on Google's infrastructure. We do not sell or share your personal data
+            with third parties.
           </p>
 
           <h2>Photos &amp; Location Data</h2>
           <p>
-            Photos you add to journal entries are stored locally and in iCloud.
-            Location data (the places you mark as visited) is used solely within the app
-            to display your travel map. We do not track your real-time location.
+            Photos you add to journal entries and itinerary blocks are stored locally and in
+            Firebase Storage. Location data (the places you mark as visited) is used within
+            the app to display your travel map. We do not track your real-time location.
           </p>
 
-          <h2>Sharing Features</h2>
+          <h2>Community &amp; Sharing Features</h2>
           <p>
-            When you share a snapshot of your globe to Instagram or other platforms,
-            the image is generated locally on your device. We do not receive or store
-            shared content.
+            When you publish an itinerary to the Roamly community, it becomes visible
+            to other users who can browse, bookmark, and rate it. Published itineraries
+            include the trip details, photos, and your display name. You can unpublish
+            an itinerary at any time.
+          </p>
+          <p>
+            When you share an itinerary via a link, a deep link is generated that allows
+            the recipient to view your itinerary within the app.
           </p>
 
           <h2>Your Choices</h2>
           <p>
-            You can disable iCloud sync at any time in iOS Settings.
+            You can delete your account and associated data at any time from the app's settings.
+            You can unpublish any itinerary you have shared with the community.
             You can unsubscribe from emails at any time using the link in any email.
-            If you delete the app, locally stored data is removed from your device.
+            If you delete the app, locally cached data is removed from your device; account data
+            stored in Firebase is retained until you delete your account.
           </p>
 
           <h2>Children's Privacy</h2>
@@ -113,7 +130,7 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <span>&copy; 2025 Roamly</span>
+      <span>&copy; 2026 Roamly</span>
       <div class="footer-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
