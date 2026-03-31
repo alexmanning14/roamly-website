@@ -1,6 +1,6 @@
 :root {
   --white: #FFFFFF;
-  --off-white: #FAFAF9;
+  --off-white: #FAF6F2;
   --gray-50: #F5F5F4;
   --gray-100: #E7E5E4;
   --gray-200: #D6D3D1;
@@ -9,10 +9,10 @@
   --gray-600: #57534E;
   --gray-700: #44403C;
   --gray-900: #1C1917;
-  --rose: #E8A0A0;
-  --rose-deep: #D4817F;
-  --seafoam: #7EC8C0;
-  --seafoam-deep: #5BB0A6;
+  --blue: #2C3E50;
+  --cream: #FAF6F2;
+  --green: #4A6741;
+  --sky: #A8C5D6;
   --radius: 20px;
   --radius-sm: 12px;
   --max-w: 1120px;
@@ -89,8 +89,8 @@ img { display: block; max-width: 100%; }
 }
 
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 30px rgba(126, 200, 192, 0.3); }
-  50%      { box-shadow: 0 0 60px rgba(126, 200, 192, 0.5); }
+  0%, 100% { box-shadow: 0 0 30px rgba(168, 197, 214, 0.3); }
+  50%      { box-shadow: 0 0 60px rgba(168, 197, 214, 0.5); }
 }
 
 @keyframes orbFloat1 {
@@ -220,7 +220,7 @@ img { display: block; max-width: 100%; }
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(250, 250, 249, 0.7);
+  background: rgba(250, 246, 242, 0.7);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid rgba(0,0,0,0.04);
@@ -295,10 +295,10 @@ img { display: block; max-width: 100%; }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(232,160,160,0.2) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 80% at 80% 30%, rgba(126,200,192,0.2) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 50% at 50% 80%, rgba(212,129,127,0.12) 0%, transparent 70%),
-    linear-gradient(160deg, #fdfcfb 0%, #f5f0ec 40%, #eef7f4 100%);
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(168,197,214,0.2) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 80% 30%, rgba(74,103,65,0.2) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 80%, rgba(44,62,80,0.12) 0%, transparent 70%),
+    linear-gradient(160deg, #FAF6F2 0%, #f2ede6 40%, #e8f0f4 100%);
   background-size: 200% 200%;
   animation: gradientMove 12s ease infinite;
 }
@@ -316,7 +316,7 @@ img { display: block; max-width: 100%; }
 .hero-bg::before {
   width: 400px;
   height: 400px;
-  background: rgba(232,160,160,0.3);
+  background: rgba(168,197,214,0.3);
   top: 10%;
   left: 5%;
   animation: orbFloat1 20s ease-in-out infinite;
@@ -325,7 +325,7 @@ img { display: block; max-width: 100%; }
 .hero-bg::after {
   width: 350px;
   height: 350px;
-  background: rgba(126,200,192,0.25);
+  background: rgba(44,62,80,0.25);
   top: 30%;
   right: 10%;
   animation: orbFloat2 18s ease-in-out infinite;
@@ -336,7 +336,7 @@ img { display: block; max-width: 100%; }
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: rgba(212,129,127,0.2);
+  background: rgba(74,103,65,0.2);
   filter: blur(50px);
   bottom: 10%;
   left: 40%;
@@ -363,9 +363,9 @@ img { display: block; max-width: 100%; }
   gap: 8px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--rose-deep);
-  background: rgba(232,160,160,0.15);
-  border: 1px solid rgba(232,160,160,0.2);
+  color: var(--blue);
+  background: rgba(168,197,214,0.15);
+  border: 1px solid rgba(168,197,214,0.2);
   padding: 8px 18px;
   border-radius: 999px;
   margin-bottom: 28px;
@@ -381,7 +381,7 @@ img { display: block; max-width: 100%; }
 }
 
 .hero h1 span {
-  background: linear-gradient(135deg, var(--rose-deep), var(--seafoam));
+  background: linear-gradient(135deg, var(--blue), var(--sky));
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -419,8 +419,8 @@ img { display: block; max-width: 100%; }
 }
 
 .hero-form input[type="email"]:focus {
-  border-color: var(--seafoam);
-  box-shadow: 0 0 0 4px rgba(126,200,192,0.15);
+  border-color: var(--sky);
+  box-shadow: 0 0 0 4px rgba(168,197,214,0.15);
 }
 
 .hero-form input[type="email"]::placeholder {
@@ -449,7 +449,7 @@ img { display: block; max-width: 100%; }
 .hero-success {
   display: none;
   font-size: 15px;
-  color: var(--seafoam-deep);
+  color: var(--green);
   font-weight: 600;
   margin-bottom: 16px;
   animation: fadeUp 0.5s var(--ease-out);
@@ -528,7 +528,7 @@ img { display: block; max-width: 100%; }
 .hero-globe-glow {
   position: absolute;
   inset: -40px;
-  background: radial-gradient(ellipse at center, rgba(126,200,192,0.15) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(168,197,214,0.15) 0%, transparent 70%);
   z-index: -1;
   animation: pulseGlow 4s ease-in-out infinite;
   pointer-events: none;
@@ -551,7 +551,7 @@ section { padding: 100px 0; }
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--seafoam-deep);
+  color: var(--green);
   margin-bottom: 16px;
 }
 
@@ -601,7 +601,7 @@ section { padding: 100px 0; }
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--rose), var(--seafoam));
+  background: linear-gradient(90deg, var(--sky), var(--sky));
   opacity: 0;
   transition: opacity 0.3s var(--ease-out);
 }
@@ -683,8 +683,8 @@ section { padding: 100px 0; }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: var(--seafoam);
-  box-shadow: 0 0 0 4px rgba(126,200,192,0.15);
+  border-color: var(--sky);
+  box-shadow: 0 0 0 4px rgba(168,197,214,0.15);
 }
 
 .contact-form input::placeholder,
@@ -718,7 +718,7 @@ section { padding: 100px 0; }
 .contact-success {
   display: none;
   font-size: 15px;
-  color: var(--seafoam-deep);
+  color: var(--green);
   font-weight: 600;
   margin-top: 12px;
   animation: fadeUp 0.5s var(--ease-out);
@@ -742,8 +742,8 @@ section { padding: 100px 0; }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 50% 80% at 20% 50%, rgba(232,160,160,0.15) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 80% at 80% 50%, rgba(126,200,192,0.12) 0%, transparent 70%);
+    radial-gradient(ellipse 50% 80% at 20% 50%, rgba(168,197,214,0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 80% 50%, rgba(44,62,80,0.12) 0%, transparent 70%);
   animation: gradientMove 10s ease infinite;
   background-size: 200% 200%;
 }
@@ -844,7 +844,7 @@ section { padding: 100px 0; }
 }
 
 .page-simple-inner a {
-  color: var(--seafoam-deep);
+  color: var(--green);
   font-weight: 500;
   transition: color 0.2s;
 }
