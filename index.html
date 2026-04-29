@@ -321,7 +321,7 @@
 
     // Subtle phone tilt on mouse move (desktop only)
     if (window.innerWidth > 900) {
-      document.querySelectorAll('.phone').forEach(phone => {
+      document.querySelectorAll('.phone:not(.phone-hero)').forEach(phone => {
         const wrap = phone.closest('section');
         if (!wrap) return;
         wrap.addEventListener('mousemove', (e) => {
