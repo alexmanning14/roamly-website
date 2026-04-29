@@ -317,54 +317,13 @@ img { display: block; max-width: 100%; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(168,197,214,0.2) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 80% at 80% 30%, rgba(74,103,65,0.2) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 50% at 50% 80%, rgba(44,62,80,0.12) 0%, transparent 70%),
-    linear-gradient(160deg, #FAF6F2 0%, #f2ede6 40%, #e8f0f4 100%);
-  background-size: 200% 200%;
-  animation: gradientMove 12s ease infinite;
+  background: #FAF6F2;
 }
 
-/* Floating orbs */
+/* Orbs disabled to keep the hero a uniform cream */
 .hero-bg::before,
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.5;
-}
-
-.hero-bg::before {
-  width: 400px;
-  height: 400px;
-  background: rgba(168,197,214,0.3);
-  top: 10%;
-  left: 5%;
-  animation: orbFloat1 20s ease-in-out infinite;
-}
-
-.hero-bg::after {
-  width: 350px;
-  height: 350px;
-  background: rgba(44,62,80,0.25);
-  top: 30%;
-  right: 10%;
-  animation: orbFloat2 18s ease-in-out infinite;
-}
-
-.hero-orb {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: rgba(74,103,65,0.2);
-  filter: blur(50px);
-  bottom: 10%;
-  left: 40%;
-  animation: orbFloat3 22s ease-in-out infinite;
-}
+.hero-bg::after,
+.hero-orb { display: none; }
 
 .hero-inner {
   position: relative;
