@@ -317,7 +317,7 @@ img { display: block; max-width: 100%; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: #FAF6F2;
+  background: #E8E3D6; /* exact-match the cream baked into places-hero.png */
 }
 
 /* Orbs disabled to keep the hero a uniform cream */
