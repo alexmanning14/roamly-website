@@ -16,7 +16,7 @@
 
   <!-- Trial Banner -->
   <div class="trial-banner">
-    <a href="https://apps.apple.com/us/app/geo-journal-travel-diary/id6737066181" target="_blank" rel="noopener noreferrer">
+    <a href="https://apps.apple.com/us/app/roamly-travel-planner-map/id6737066181" target="_blank" rel="noopener noreferrer">
       Download Roamly free on the App Store &rarr;
     </a>
   </div>
@@ -29,10 +29,10 @@
         <span class="brand-name">Roamly</span>
       </a>
       <nav class="nav">
+        <a href="#how">How it works</a>
         <a href="#features">Features</a>
         <a href="#contact">Contact</a>
         <a href="about.html">About</a>
-        <a href="privacy.html">Privacy</a>
       </nav>
     </div>
   </header>
@@ -53,16 +53,14 @@
             beautiful 3D globe, and discover itineraries shared by travelers worldwide.
           </p>
 
-          <!-- Email signup -->
           <form class="hero-form" action="https://formspree.io/f/xgonqzor" method="POST" id="email-form">
             <input type="email" name="email" placeholder="Enter your email for updates" required />
             <button type="submit">Subscribe</button>
           </form>
           <p class="hero-success" id="hero-success">Thanks for subscribing!</p>
 
-          <!-- App Store -->
           <div class="hero-links">
-            <a href="https://apps.apple.com/us/app/geo-journal-travel-diary/id6737066181" class="app-store-btn" target="_blank" rel="noopener noreferrer">
+            <a href="https://apps.apple.com/us/app/roamly-travel-planner-map/id6737066181" class="app-store-btn" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.86 9.28 4.84C10.56 4.81 11.78 5.72 12.56 5.72C13.34 5.72 14.83 4.62 16.39 4.8C17.07 4.83 18.94 5.09 20.13 6.82C20.04 6.88 17.64 8.27 17.67 11.16C17.71 14.61 20.68 15.7 20.72 15.72C20.69 15.79 20.24 17.37 19.12 18.99L18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg>
               Download for iOS
             </a>
@@ -71,12 +69,13 @@
           <p class="hero-note">Free on iPhone &middot; Requires iOS 17.5+</p>
         </div>
 
-        <!-- Hero globe -->
+        <!-- Hero phone -->
         <div class="hero-visual">
-          <div class="hero-globe-wrap">
-            <div class="hero-globe-glow"></div>
-            <div class="hero-globe">
-              <img src="assets/icon.png" alt="Roamly — 3D Globe" />
+          <div class="phone phone-hero">
+            <div class="phone-glow"></div>
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <img src="assets/screens/globe.png" alt="Roamly 3D globe view" />
             </div>
           </div>
         </div>
@@ -84,44 +83,173 @@
       </div>
     </section>
 
-    <!-- ═══ FEATURES GRID ═══ -->
+    <!-- ═══ HOW IT WORKS ═══ -->
+    <section class="how" id="how">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">How it works</span>
+          <h2>From dream to journal in three steps.</h2>
+          <p>A travel companion that grows with every trip you take.</p>
+        </div>
+
+        <div class="how-steps stagger">
+          <div class="how-step">
+            <div class="how-num">01</div>
+            <h3>Plan</h3>
+            <p>Build day-by-day itineraries with places, food, activities, flights, housing &amp; notes.</p>
+          </div>
+          <div class="how-step">
+            <div class="how-num">02</div>
+            <h3>Track</h3>
+            <p>Pin every city you've visited and watch your interactive 3D globe fill in over time.</p>
+          </div>
+          <div class="how-step">
+            <div class="how-num">03</div>
+            <h3>Share</h3>
+            <p>Publish trips for the community, save inspiration from others, and share with friends.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FEATURE: ITINERARY ═══ -->
+    <section class="feature-block">
+      <div class="container feature-block-inner">
+        <div class="feature-text reveal-left">
+          <span class="section-label">Plan trips</span>
+          <h2>A day-by-day builder for the way you actually travel.</h2>
+          <p>Time-blocked schedules with six activity types — places, food, activities, flights, housing, and notes. Add photos, links, and details to every stop. Roamly keeps everything in sync across your devices.</p>
+          <ul class="feature-bullets">
+            <li>Six block types for every kind of plan</li>
+            <li>Photos, notes, links &amp; precise times</li>
+            <li>Auto-saves &amp; syncs in real time</li>
+          </ul>
+        </div>
+        <div class="feature-visual reveal-right">
+          <div class="phone">
+            <div class="phone-glow phone-glow-warm"></div>
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <img src="assets/screens/itinerary.png" alt="Roamly itinerary builder" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FEATURE: GLOBE ═══ -->
+    <section class="feature-block feature-block-alt">
+      <div class="container feature-block-inner reverse">
+        <div class="feature-text reveal-right">
+          <span class="section-label">Track</span>
+          <h2>An interactive 3D globe for every adventure.</h2>
+          <p>Pin the cities you've visited and explore them on a beautiful, satellite-rendered globe. Spin, zoom, and tap any pin to revisit your trip — your travel history, made tangible.</p>
+          <ul class="feature-bullets">
+            <li>Real-world satellite globe powered by Apple Maps</li>
+            <li>Country &amp; city tracking with one tap</li>
+            <li>Cinematic flight-path recap videos</li>
+          </ul>
+        </div>
+        <div class="feature-visual reveal-left">
+          <div class="phone">
+            <div class="phone-glow phone-glow-cool"></div>
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <img src="assets/screens/globe.png" alt="Roamly 3D globe with pinned cities" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FEATURE: BROWSE ═══ -->
+    <section class="feature-block">
+      <div class="container feature-block-inner">
+        <div class="feature-text reveal-left">
+          <span class="section-label">Discover</span>
+          <h2>Real itineraries from real travelers.</h2>
+          <p>Browse trips published by the Roamly community. Search by destination, sort by top-rated or newest, and bookmark anything that inspires your next adventure.</p>
+          <ul class="feature-bullets">
+            <li>Community-published trips, ranked by votes</li>
+            <li>Filter by destination, duration &amp; activities</li>
+            <li>Save trips to revisit when you're ready to plan</li>
+          </ul>
+        </div>
+        <div class="feature-visual reveal-right">
+          <div class="phone">
+            <div class="phone-glow phone-glow-mint"></div>
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <img src="assets/screens/browse.png" alt="Roamly community browse" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FEATURE: SHARE ═══ -->
+    <section class="feature-block feature-block-alt">
+      <div class="container feature-block-inner reverse">
+        <div class="feature-text reveal-right">
+          <span class="section-label">Share</span>
+          <h2>Publish your trips. Inspire someone else.</h2>
+          <p>Share your itineraries publicly with one tap, or send a private link to a friend. See how many travelers loved your trip and watch your library of journals grow.</p>
+          <ul class="feature-bullets">
+            <li>One-tap publish to the Roamly community</li>
+            <li>Private share links for friends &amp; family</li>
+            <li>Track hearts &amp; activity on every post</li>
+          </ul>
+        </div>
+        <div class="feature-visual reveal-left">
+          <div class="phone">
+            <div class="phone-glow phone-glow-coral"></div>
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <img src="assets/screens/myposts.png" alt="Roamly my posts" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ EXTRA FEATURES GRID ═══ -->
     <section class="features" id="features">
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-label">Features</span>
-          <h2>Plan, track, and share your travels.</h2>
-          <p>Everything you need to build itineraries, visualize your journey, and connect with fellow travelers.</p>
+          <span class="section-label">More features</span>
+          <h2>Built for travelers, by travelers.</h2>
+          <p>The little details that turn a planner into a journal worth keeping.</p>
         </div>
         <div class="feature-grid stagger">
           <article class="feature-card">
-            <div class="feature-icon">&#x1F30D;</div>
-            <h3>3D Globe</h3>
-            <p>Explore a beautiful interactive 3D earth and see everywhere you've been at a glance.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-icon">&#x1F4CD;</div>
-            <h3>Track Your Travels</h3>
-            <p>Highlight and toggle the places you've visited to build your personal travel map.</p>
-          </article>
-          <article class="feature-card">
             <div class="feature-icon">&#x1F4F8;</div>
-            <h3>Photos, Notes &amp; Details</h3>
-            <p>Attach photos, notes, links, and scheduling details to every stop in your itinerary.</p>
+            <h3>Photos &amp; memories</h3>
+            <p>Attach photos to any stop. Your itinerary becomes a living scrapbook.</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon">&#x1F5D3;&#xFE0F;</div>
-            <h3>Itinerary Builder</h3>
-            <p>Plan trips day by day with six activity types: places, food, activities, notes, flights, and housing.</p>
+            <div class="feature-icon">&#x2708;&#xFE0F;</div>
+            <h3>Flights &amp; housing</h3>
+            <p>Dedicated block types for transit and lodging — confirmation details included.</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon">&#x1F50D;</div>
-            <h3>Browse &amp; Discover</h3>
-            <p>Explore itineraries published by travelers worldwide. Search, filter, bookmark, and get inspired.</p>
+            <div class="feature-icon">&#x1F3AC;</div>
+            <h3>Recap videos</h3>
+            <p>Auto-generated cinematic recaps of your trips, ready to share.</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon">&#x1F3A8;</div>
-            <h3>Beautiful Design</h3>
-            <p>A warm, playful interface that makes journaling feel like part of the adventure.</p>
+            <div class="feature-icon">&#x1F510;</div>
+            <h3>Sign in your way</h3>
+            <p>Apple, Google, or email — your trips sync securely across devices.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">&#x1F319;</div>
+            <h3>Light &amp; dark</h3>
+            <p>A warm, journal-inspired interface that adapts to your taste and time of day.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">&#x1F30E;</div>
+            <h3>Works worldwide</h3>
+            <p>Powered by Apple Maps — any country, any city, any continent.</p>
           </article>
         </div>
       </div>
@@ -154,7 +282,7 @@
         <div class="cta-content reveal">
           <h2>Ready to plan your next trip?</h2>
           <p>Download Roamly and start building itineraries, tracking your travels, and discovering new adventures.</p>
-          <a href="https://apps.apple.com/us/app/geo-journal-travel-diary/id6737066181" class="app-store-btn" target="_blank" rel="noopener noreferrer">
+          <a href="https://apps.apple.com/us/app/roamly-travel-planner-map/id6737066181" class="app-store-btn" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.86 9.28 4.84C10.56 4.81 11.78 5.72 12.56 5.72C13.34 5.72 14.83 4.62 16.39 4.8C17.07 4.83 18.94 5.09 20.13 6.82C20.04 6.88 17.64 8.27 17.67 11.16C17.71 14.61 20.68 15.7 20.72 15.72C20.69 15.79 20.24 17.37 19.12 18.99L18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg>
             Download Free on the App Store
           </a>
@@ -171,13 +299,12 @@
       <div class="footer-links">
         <a href="about.html">About</a>
         <a href="privacy.html">Privacy Policy</a>
-        <a href="https://apps.apple.com/us/app/geo-journal-travel-diary/id6737066181" target="_blank" rel="noopener noreferrer">App Store</a>
+        <a href="https://apps.apple.com/us/app/roamly-travel-planner-map/id6737066181" target="_blank" rel="noopener noreferrer">App Store</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // Scroll-triggered animations
     const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
 
     const observer = new IntersectionObserver((entries) => {
@@ -192,14 +319,21 @@
       observer.observe(el);
     });
 
-    // Parallax on hero globe
-    const heroGlobe = document.querySelector('.hero-globe-wrap');
-    if (heroGlobe && window.innerWidth > 900) {
-      window.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 8;
-        const y = (e.clientY / window.innerHeight - 0.5) * 8;
-        heroGlobe.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg)`;
-      }, { passive: true });
+    // Subtle phone tilt on mouse move (desktop only)
+    if (window.innerWidth > 900) {
+      document.querySelectorAll('.phone').forEach(phone => {
+        const wrap = phone.closest('section');
+        if (!wrap) return;
+        wrap.addEventListener('mousemove', (e) => {
+          const r = phone.getBoundingClientRect();
+          const x = ((e.clientX - r.left) / r.width - 0.5) * 6;
+          const y = ((e.clientY - r.top) / r.height - 0.5) * 6;
+          phone.style.transform = `perspective(1200px) rotateY(${x}deg) rotateX(${-y}deg)`;
+        }, { passive: true });
+        wrap.addEventListener('mouseleave', () => {
+          phone.style.transform = '';
+        });
+      });
     }
 
     // Email form
@@ -222,7 +356,6 @@
       }
     });
 
-    // Contact form
     const contactForm = document.getElementById('contact-form');
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -242,7 +375,6 @@
       }
     });
 
-    // Smooth header shadow on scroll
     const header = document.querySelector('.site-header');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 10) {
