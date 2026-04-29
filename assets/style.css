@@ -529,24 +529,43 @@ img { display: block; max-width: 100%; }
   display: inline-block;
 }
 
-/* Pre-rendered 3D-tilted iPhone mockups (built via scripts/build-mockups.py).
-   The tilt, perspective, and frame are baked into the PNG. */
-.phone-mockup {
-  display: block;
-  width: 320px;
-  height: auto;
-  position: relative;
-  z-index: 1;
-}
-
-.phone-hero .phone-mockup {
-  width: 360px;
+.phone-hero {
   animation: float 7s ease-in-out infinite;
 }
 
-.feature-visual .phone-mockup {
-  width: 340px;
+/* Real iPhone 16 Pro frame from Wikimedia Commons (CC BY 4.0).
+   Body, dynamic island, and side buttons live in iphone-frame.svg.
+   The screenshot is positioned over the SVG's screen rect:
+   x=4.12, y=3.13, w=85.95, h=186.89 in a 94.19x193.15 viewBox. */
+.phone-frame {
+  position: relative;
+  width: 290px;
+  aspect-ratio: 94.19 / 193.15;
+  background-image: url('iphone-frame.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  filter:
+    drop-shadow(0 30px 50px rgba(0,0,0,0.28))
+    drop-shadow(0 10px 20px rgba(0,0,0,0.16));
 }
+
+.phone-hero .phone-frame { width: 320px; }
+.feature-visual .phone-frame { width: 300px; }
+
+.phone-frame img {
+  position: absolute;
+  top: 1.62%;
+  left: 4.37%;
+  width: 91.25%;
+  height: 96.76%;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 11.5% / 5.5%;
+  background: #000;
+}
+
+.phone-notch { display: none; }
 
 .phone-glow {
   position: absolute;
@@ -1083,8 +1102,8 @@ section { padding: 100px 0; }
   .hero-note { text-align: center; }
 
   .feature-grid { grid-template-columns: 1fr 1fr; }
-  .phone-hero .phone-mockup { width: 280px; }
-  .feature-visual .phone-mockup { width: 280px; }
+  .phone-hero .phone-frame { width: 240px; }
+  .feature-visual .phone-frame { width: 260px; }
 
   .feature-block-inner {
     grid-template-columns: 1fr;
@@ -1110,8 +1129,8 @@ section { padding: 100px 0; }
   .feature-grid { grid-template-columns: 1fr; }
   .hero-form { flex-direction: column; }
   .hero-form button { width: 100%; }
-  .phone-hero .phone-mockup,
-  .feature-visual .phone-mockup { width: 230px; }
+  .phone-hero .phone-frame,
+  .feature-visual .phone-frame { width: 220px; }
   .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
   .hero-links { flex-direction: column; align-items: center; }
 }
