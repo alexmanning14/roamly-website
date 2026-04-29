@@ -532,30 +532,63 @@ img { display: block; max-width: 100%; }
 }
 
 .phone-hero {
-  animation: float 7s ease-in-out infinite;
-  transform: perspective(1400px) rotateY(-14deg) rotateX(6deg) rotateZ(-2deg);
-  transform-origin: center center;
+  animation: floatTilt 8s ease-in-out infinite;
+  transform-origin: 60% 60%;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .phone-hero .phone-frame {
-  width: 300px;
+  width: 320px;
   filter:
-    drop-shadow(-40px 60px 60px rgba(20,12,4,0.40))
-    drop-shadow(-10px 20px 24px rgba(20,12,4,0.22))
-    drop-shadow(0 12px 30px rgba(0,0,0,0.18));
+    drop-shadow(-55px 70px 70px rgba(20,12,4,0.42))
+    drop-shadow(-18px 28px 32px rgba(20,12,4,0.24))
+    drop-shadow(0 14px 32px rgba(0,0,0,0.18));
 }
 
+/* Subtle screen sheen — implies light source from upper-left */
+.phone-hero .phone-frame::after {
+  content: '';
+  position: absolute;
+  top: 1.62%;
+  left: 4.37%;
+  width: 91.25%;
+  height: 96.76%;
+  border-radius: 11.5% / 5.5%;
+  background: linear-gradient(
+    115deg,
+    rgba(255,255,255,0.18) 0%,
+    rgba(255,255,255,0.06) 18%,
+    rgba(255,255,255,0) 38%,
+    rgba(255,255,255,0) 70%,
+    rgba(255,255,255,0.05) 100%
+  );
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 2;
+}
+
+/* Ground shadow ellipse */
 .phone-hero::after {
   content: '';
   position: absolute;
-  left: 8%;
-  right: -6%;
-  bottom: -36px;
-  height: 50px;
-  background: radial-gradient(ellipse at center, rgba(20,12,4,0.28) 0%, transparent 70%);
-  filter: blur(14px);
+  left: 5%;
+  right: -10%;
+  bottom: -50px;
+  height: 60px;
+  background: radial-gradient(ellipse at center, rgba(20,12,4,0.32) 0%, transparent 70%);
+  filter: blur(16px);
   z-index: -2;
-  transform: rotateX(70deg) translateZ(-20px);
+  transform: rotateX(75deg) translateZ(-30px) scale(0.9, 0.6);
+}
+
+@keyframes floatTilt {
+  0%, 100% {
+    transform: perspective(1600px) rotateY(-22deg) rotateX(8deg) rotateZ(-4deg) translateY(0);
+  }
+  50% {
+    transform: perspective(1600px) rotateY(-20deg) rotateX(7deg) rotateZ(-3.5deg) translateY(-10px);
+  }
 }
 
 /* Real iPhone 16 Pro frame from Wikimedia Commons (CC BY 4.0).
