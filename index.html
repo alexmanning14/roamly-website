@@ -73,10 +73,7 @@
         <div class="hero-visual">
           <div class="phone phone-hero">
             <div class="phone-glow"></div>
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <img src="assets/screens/places.png" alt="Roamly trip detail with map and notes" />
-            </div>
+            <img class="phone-mockup" src="assets/screens/places-3d.png" alt="Roamly trip detail with map and notes" />
           </div>
         </div>
 
@@ -128,10 +125,7 @@
         <div class="feature-visual reveal-right">
           <div class="phone">
             <div class="phone-glow phone-glow-warm"></div>
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <img src="assets/screens/itinerary.png" alt="Roamly itinerary builder" />
-            </div>
+            <img class="phone-mockup" src="assets/screens/itinerary-3d.png" alt="Roamly itinerary builder" />
           </div>
         </div>
       </div>
@@ -153,10 +147,7 @@
         <div class="feature-visual reveal-left">
           <div class="phone">
             <div class="phone-glow phone-glow-cool"></div>
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <img src="assets/screens/globe.png" alt="Roamly 3D globe with pinned cities" />
-            </div>
+            <img class="phone-mockup" src="assets/screens/globe-3d.png" alt="Roamly 3D globe with pinned cities" />
           </div>
         </div>
       </div>
@@ -178,10 +169,7 @@
         <div class="feature-visual reveal-right">
           <div class="phone">
             <div class="phone-glow phone-glow-mint"></div>
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <img src="assets/screens/browse.png" alt="Roamly community browse" />
-            </div>
+            <img class="phone-mockup" src="assets/screens/browse-3d.png" alt="Roamly community browse" />
           </div>
         </div>
       </div>
@@ -203,10 +191,7 @@
         <div class="feature-visual reveal-left">
           <div class="phone">
             <div class="phone-glow phone-glow-coral"></div>
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <img src="assets/screens/myposts.png" alt="Roamly my posts" />
-            </div>
+            <img class="phone-mockup" src="assets/screens/myposts-3d.png" alt="Roamly my posts" />
           </div>
         </div>
       </div>
@@ -319,22 +304,6 @@
       observer.observe(el);
     });
 
-    // Subtle phone tilt on mouse move (desktop only)
-    if (window.innerWidth > 900) {
-      document.querySelectorAll('.phone:not(.phone-hero)').forEach(phone => {
-        const wrap = phone.closest('section');
-        if (!wrap) return;
-        wrap.addEventListener('mousemove', (e) => {
-          const r = phone.getBoundingClientRect();
-          const x = ((e.clientX - r.left) / r.width - 0.5) * 6;
-          const y = ((e.clientY - r.top) / r.height - 0.5) * 6;
-          phone.style.transform = `perspective(1200px) rotateY(${x}deg) rotateX(${-y}deg)`;
-        }, { passive: true });
-        wrap.addEventListener('mouseleave', () => {
-          phone.style.transform = '';
-        });
-      });
-    }
 
     // Email form
     const emailForm = document.getElementById('email-form');
