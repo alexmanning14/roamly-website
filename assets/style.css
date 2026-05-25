@@ -519,6 +519,7 @@ img { display: block; max-width: 100%; }
 .phone-glow-cool   { background: radial-gradient(ellipse at center, rgba(168, 197, 214, 0.40) 0%, transparent 70%); }
 .phone-glow-mint   { background: radial-gradient(ellipse at center, rgba(140, 200, 175, 0.35) 0%, transparent 70%); }
 .phone-glow-coral  { background: radial-gradient(ellipse at center, rgba(232, 156, 144, 0.32) 0%, transparent 70%); }
+.phone-glow-ai     { background: radial-gradient(ellipse at center, rgba(190, 170, 230, 0.38) 0%, transparent 70%); }
 
 /* ═══════════════════════════════
    HOW IT WORKS

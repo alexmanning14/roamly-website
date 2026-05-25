@@ -39,6 +39,10 @@ JOBS = [
      "Generate a photorealistic image of an iPhone 16 Pro at an angle, showing this exact app screenshot pixel-perfect on its screen. "
      "The phone is tilted with its right edge coming forward at about 12 degrees. "
      "Warm coral peach pastel background, gentle shadow. Visible titanium bezel and dynamic island. Portrait orientation."),
+    ('ai.png', 'ai-mockup.png',
+     "Generate a photorealistic image of an iPhone 16 Pro at an angle, showing this exact app screenshot pixel-perfect on its screen. "
+     "The phone is tilted with its left edge coming forward at about 12 degrees. "
+     "Soft lavender-violet pastel background suggesting magic and intelligence, gentle shadow. Visible titanium bezel and dynamic island. Portrait orientation."),
 ]
 
 def call(input_path, prompt):
@@ -60,7 +64,13 @@ def call(input_path, prompt):
         print('HTTP', e.code, e.read().decode()[:500])
         raise
 
-for inp, out, prompt in JOBS:
+filter_arg = sys.argv[1] if len(sys.argv) > 1 else None
+jobs = [j for j in JOBS if not filter_arg or filter_arg in j[0]]
+if filter_arg and not jobs:
+    print(f'No jobs match "{filter_arg}". Available: {[j[0] for j in JOBS]}')
+    sys.exit(1)
+
+for inp, out, prompt in jobs:
     print(f'-- {inp} -> {out}')
     in_path = f'{ROOT}/{inp}'
     out_path = f'{ROOT}/{out}'
