@@ -429,12 +429,12 @@
 
     // Showcase fan carousel
     const showcaseScreens = [
-      { img: 'assets/screens/plan.png', label: 'Plan a Trip' },
-      { img: 'assets/screens/destination.png', label: 'Destination' },
-      { img: 'assets/screens/trip-itinerary.png', label: 'Day-by-Day Planner' },
-      { img: 'assets/screens/globe-pins.png', label: '3D Globe' },
-      { img: 'assets/screens/community.png', label: 'Community' },
-      { img: 'assets/screens/mytrips.png', label: 'My Trips' },
+      { img: 'assets/screens/plan.webp', label: 'Plan a Trip' },
+      { img: 'assets/screens/destination.webp', label: 'Destination' },
+      { img: 'assets/screens/trip-itinerary.webp', label: 'Day-by-Day Planner' },
+      { img: 'assets/screens/globe-pins.webp', label: '3D Globe' },
+      { img: 'assets/screens/community.webp', label: 'Community' },
+      { img: 'assets/screens/mytrips.webp', label: 'My Trips' },
     ];
     let showcaseCenter = 2;
     const showcaseFan = document.getElementById('showcase-fan');
@@ -473,9 +473,28 @@
       return el;
     });
 
+    function showcaseIsHidden(state) {
+      return state === 'hidden-left' || state === 'hidden-right';
+    }
+
     function updateShowcaseFan() {
       showcasePhones.forEach((el, i) => {
-        el.className = `fan-phone ${showcaseStateClass(showcaseDiff(i, showcaseCenter))}`;
+        const prevState = el.className.replace('fan-phone', '').trim();
+        const newState = showcaseStateClass(showcaseDiff(i, showcaseCenter));
+
+        // A phone coming from a hidden (opacity 0) state was invisible a
+        // moment ago, so it can jump straight to its new spot with no
+        // transition. Without this, it would visibly sweep all the way
+        // across the fan while fading in from 0 opacity, since it has to
+        // travel the full width to "wrap around" to the other side.
+        if (showcaseIsHidden(prevState) && !showcaseIsHidden(newState)) {
+          el.style.transition = 'none';
+          el.className = `fan-phone ${newState}`;
+          void el.offsetHeight; // flush the instant position before re-enabling transitions
+          el.style.transition = '';
+        } else {
+          el.className = `fan-phone ${newState}`;
+        }
       });
       showcaseDots.forEach((d, i) => d.classList.toggle('active', i === showcaseCenter));
     }

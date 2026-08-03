@@ -665,9 +665,9 @@ img { display: block; max-width: 100%; }
   top: 50%;
   left: 50%;
   transition:
-    transform 0.75s var(--ease-spring),
-    opacity 0.55s var(--ease-out),
-    filter 0.55s var(--ease-out);
+    transform 0.6s var(--ease-out),
+    opacity 0.6s var(--ease-out),
+    filter 0.6s var(--ease-out);
   cursor: pointer;
   will-change: transform, opacity;
 }
@@ -700,7 +700,7 @@ img { display: block; max-width: 100%; }
   border-radius: 0 0 12px 12px;
   z-index: 2;
 }
-.fan-phone img { width: 100%; border-radius: 26px; display: block; }
+.fan-phone img { width: 100%; aspect-ratio: 1206 / 2622; border-radius: 26px; display: block; }
 .fan-phone .fan-label {
   text-align: center;
   margin-top: 14px;
