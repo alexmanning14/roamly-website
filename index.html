@@ -427,7 +427,27 @@
       observer.observe(el);
     });
 
-    // Showcase fan carousel
+    // Showcase fan carousel.
+    //
+    // Architecture: each of the 6 phones is a PERMANENT DOM element that
+    // only ever shows one screen — there is no role-reassignment and no
+    // CSS class toggling at all. Every animation frame, each phone's
+    // transform/opacity/filter/z-index is recomputed as a continuous,
+    // stateless function of its distance from a single animated position
+    // value (showcasePosition). That position is free to grow or shrink
+    // without limit (it's never wrapped/reset), so there is never a
+    // moment where a phone's target position "jumps" discontinuously —
+    // it always slides smoothly, exactly like a real carousel.
+    //
+    // The one place a discontinuity is mathematically unavoidable is in
+    // the *presentational* distance used for styling (the shortest-path
+    // wrap at +/-half the screen count, e.g. going from "3 slots away on
+    // the left" to "3 slots away on the right" is the same visual spot).
+    // Rather than special-casing exactly when that happens, the opacity
+    // curve below is built with a wide dead zone that reaches exactly 0
+    // well before that wrap point and stays 0 all the way to it — so
+    // regardless of interaction pattern, timing, or frame rate, the one
+    // discontinuous point is provably always fully invisible.
     const showcaseScreens = [
       { img: 'assets/screens/plan.webp', label: 'Plan a Trip' },
       { img: 'assets/screens/destination.webp', label: 'Destination' },
@@ -436,67 +456,139 @@
       { img: 'assets/screens/community.webp', label: 'Community' },
       { img: 'assets/screens/mytrips.webp', label: 'My Trips' },
     ];
-    let showcaseCenter = 2;
+    const showcaseCount = showcaseScreens.length;
     const showcaseFan = document.getElementById('showcase-fan');
     const showcaseDots = Array.from(document.querySelectorAll('#showcase-dots button'));
     let showcaseTimer = null;
+    let showcaseRAF = null;
+    let showcasePosition = 2; // unwrapped — grows/shrinks freely, never reset
 
-    function showcaseDiff(index, center) {
-      let diff = index - center;
-      if (diff > showcaseScreens.length / 2) diff -= showcaseScreens.length;
-      if (diff < -showcaseScreens.length / 2) diff += showcaseScreens.length;
-      return diff;
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    // Piecewise-linear interpolation between [distance, value] anchor pairs.
+    function interpAnchors(dist, anchors) {
+      for (let i = 0; i < anchors.length - 1; i++) {
+        const [d0, v0] = anchors[i];
+        const [d1, v1] = anchors[i + 1];
+        if (dist <= d1) {
+          const t = d1 === d0 ? 1 : (dist - d0) / (d1 - d0);
+          return lerp(v0, v1, Math.max(0, Math.min(1, t)));
+        }
+      }
+      return anchors[anchors.length - 1][1];
     }
 
-    function showcaseStateClass(diff) {
-      if (diff === 0) return 'center';
-      if (diff === -1) return 'left';
-      if (diff === 1) return 'right';
-      if (diff === -2) return 'far-left';
-      if (diff === 2) return 'far-right';
-      return diff < 0 ? 'hidden-left' : 'hidden-right';
+    // Anchors keyed by |distance from center| in "slots". 2.4 is where
+    // opacity finishes fading to 0; the wrap point is at exactly 3 (half
+    // of 6 screens) — so opacity is guaranteed 0 for the entire [2.4, 3]
+    // range, regardless of how the animation got there.
+    const OPACITY_ANCHORS = [[0, 1], [1, 0.82], [2, 0.38], [2.4, 0], [3, 0]];
+    const SCALE_ANCHORS = [[0, 1], [1, 0.85], [2, 0.7], [2.4, 0.55], [3, 0.55]];
+    const ROTATE_ANCHORS = [[0, 0], [1, 5], [2, 9], [2.4, 11], [3, 12]]; // degrees
+    const SATURATE_ANCHORS = [[0, 1], [1, 0.9], [2, 0.8], [2.4, 0.75], [3, 0.75]];
+
+    function showcaseWrapDiff(rawDiff) {
+      let d = rawDiff % showcaseCount;
+      if (d > showcaseCount / 2) d -= showcaseCount;
+      if (d <= -showcaseCount / 2) d += showcaseCount;
+      return d;
     }
 
-    // Each phone gets its correct position class at creation time (not in a
-    // separate pass after insertion) so it never briefly renders unstyled
-    // and full-opacity before animating into place.
-    const showcasePhones = showcaseScreens.map((s, i) => {
+    const showcasePhones = showcaseScreens.map((screen, index) => {
       const el = document.createElement('div');
-      el.className = `fan-phone ${showcaseStateClass(showcaseDiff(i, showcaseCenter))}`;
-      el.innerHTML = `<div class="phone-wrap"><img src="${s.img}" alt="Roamly app screen: ${s.label}" /></div><div class="fan-label">${s.label}</div>`;
+      el.className = 'fan-phone';
+      el.innerHTML = `<div class="phone-wrap"><img src="${screen.img}" alt="Roamly app screen: ${screen.label}" /></div><div class="fan-label">${screen.label}</div>`;
       el.addEventListener('click', () => {
-        showcaseCenter = i;
-        updateShowcaseFan();
+        showcaseGoTo(index);
         restartShowcaseAutoRotate();
       });
       showcaseFan.appendChild(el);
-      return el;
+      return { el, index, label: el.querySelector('.fan-label') };
     });
 
-    function showcaseIsHidden(state) {
-      return state === 'hidden-left' || state === 'hidden-right';
+    function showcaseOffsetPx(dist, units) {
+      const step = units.far - units.near;
+      const anchors = [
+        [0, 0],
+        [1, units.near],
+        [2, units.far],
+        [2.4, units.far + step * 0.4],
+        [3, units.far + step * 0.8],
+      ];
+      return interpAnchors(dist, anchors);
     }
 
-    function updateShowcaseFan() {
-      showcasePhones.forEach((el, i) => {
-        const prevState = el.className.replace('fan-phone', '').trim();
-        const newState = showcaseStateClass(showcaseDiff(i, showcaseCenter));
+    function showcaseReadUnits() {
+      const cs = getComputedStyle(showcaseFan);
+      const near = parseFloat(cs.getPropertyValue('--fan-near-offset'));
+      const far = parseFloat(cs.getPropertyValue('--fan-far-offset'));
+      return {
+        near: Number.isFinite(near) ? near : 150,
+        far: Number.isFinite(far) ? far : 280,
+      };
+    }
 
-        // A phone coming from a hidden (opacity 0) state was invisible a
-        // moment ago, so it can jump straight to its new spot with no
-        // transition. Without this, it would visibly sweep all the way
-        // across the fan while fading in from 0 opacity, since it has to
-        // travel the full width to "wrap around" to the other side.
-        if (showcaseIsHidden(prevState) && !showcaseIsHidden(newState)) {
-          el.style.transition = 'none';
-          el.className = `fan-phone ${newState}`;
-          void el.offsetHeight; // flush the instant position before re-enabling transitions
-          el.style.transition = '';
-        } else {
-          el.className = `fan-phone ${newState}`;
-        }
+    function renderShowcaseAt(position) {
+      const units = showcaseReadUnits();
+      showcasePhones.forEach(phone => {
+        const diff = showcaseWrapDiff(phone.index - position);
+        const dist = Math.abs(diff);
+        const sign = diff < 0 ? -1 : 1;
+
+        const opacity = interpAnchors(dist, OPACITY_ANCHORS);
+        const scale = interpAnchors(dist, SCALE_ANCHORS);
+        const rotateDeg = sign * interpAnchors(dist, ROTATE_ANCHORS);
+        const saturate = interpAnchors(dist, SATURATE_ANCHORS);
+        const offsetPx = sign * showcaseOffsetPx(dist, units);
+        const isVisible = opacity > 0.02;
+
+        phone.el.style.zIndex = String(Math.round(100 - dist * 20));
+        phone.el.style.opacity = String(opacity);
+        phone.el.style.pointerEvents = isVisible ? '' : 'none';
+        phone.el.style.filter = isVisible ? `saturate(${saturate})` : 'none';
+        phone.el.style.transform =
+          `translate(-50%, -50%) translateX(${offsetPx}px) rotate(${rotateDeg}deg) scale(${scale})`;
+        phone.label.style.opacity = String(Math.max(0, 1 - dist * 3));
       });
-      showcaseDots.forEach((d, i) => d.classList.toggle('active', i === showcaseCenter));
+
+      const nearestIndex = ((Math.round(position) % showcaseCount) + showcaseCount) % showcaseCount;
+      showcaseDots.forEach((d, i) => d.classList.toggle('active', i === nearestIndex));
+    }
+
+    function showcaseAnimateTo(target) {
+      if (showcaseRAF !== null) cancelAnimationFrame(showcaseRAF);
+      const start = showcasePosition;
+      const distance = target - start;
+      const duration = 600;
+      const startTime = performance.now();
+      const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+      function tick(now) {
+        const t = Math.min(1, (now - startTime) / duration);
+        showcasePosition = distance === 0 ? target : lerp(start, target, easeOutCubic(t));
+        renderShowcaseAt(showcasePosition);
+        if (t < 1) {
+          showcaseRAF = requestAnimationFrame(tick);
+        } else {
+          showcaseRAF = null;
+          showcasePosition = target;
+          renderShowcaseAt(showcasePosition);
+        }
+      }
+      showcaseRAF = requestAnimationFrame(tick);
+    }
+
+    // Always animates toward the NEAREST representation of targetIndex
+    // relative to wherever showcasePosition currently is (even mid-flight),
+    // so it's never more than half a loop away and always redirects smoothly.
+    function showcaseGoTo(targetIndex) {
+      const delta = showcaseWrapDiff(targetIndex - showcasePosition);
+      if (Math.abs(delta) < 1e-6 && showcaseRAF === null) return; // already there, nothing in flight
+      showcaseAnimateTo(showcasePosition + delta);
+    }
+
+    function showcaseCurrentIndex() {
+      return ((Math.round(showcasePosition) % showcaseCount) + showcaseCount) % showcaseCount;
     }
 
     function stopShowcaseAutoRotate() {
@@ -509,8 +601,7 @@
     function startShowcaseAutoRotate() {
       stopShowcaseAutoRotate();
       showcaseTimer = window.setInterval(() => {
-        showcaseCenter = (showcaseCenter + 1) % showcaseScreens.length;
-        updateShowcaseFan();
+        showcaseGoTo((showcaseCurrentIndex() + 1) % showcaseCount);
       }, 4300);
     }
 
@@ -520,8 +611,7 @@
 
     showcaseDots.forEach(btn => {
       btn.addEventListener('click', () => {
-        showcaseCenter = Number(btn.dataset.idx);
-        updateShowcaseFan();
+        showcaseGoTo(Number(btn.dataset.idx));
         restartShowcaseAutoRotate();
       });
     });
@@ -561,15 +651,13 @@
       const dx = t.clientX - showcaseTouchStartX;
       const dy = t.clientY - showcaseTouchStartY;
       if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
-        showcaseCenter = dx < 0
-          ? (showcaseCenter + 1) % showcaseScreens.length
-          : (showcaseCenter - 1 + showcaseScreens.length) % showcaseScreens.length;
-        updateShowcaseFan();
+        const dir = dx < 0 ? 1 : -1;
+        showcaseGoTo((showcaseCurrentIndex() + dir + showcaseCount) % showcaseCount);
       }
       restartShowcaseAutoRotate();
     });
 
-    updateShowcaseFan();
+    renderShowcaseAt(showcasePosition);
     startShowcaseAutoRotate();
 
     // Email form

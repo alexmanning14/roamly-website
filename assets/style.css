@@ -644,11 +644,8 @@ img { display: block; max-width: 100%; }
 
 .showcase-fan {
   --fan-center-width: clamp(200px, 22vw, 230px);
-  --fan-side-width: clamp(174px, 20vw, 212px);
-  --fan-outer-width: clamp(142px, 16vw, 194px);
   --fan-near-offset: clamp(126px, 16vw, 186px);
   --fan-far-offset: clamp(222px, 27vw, 344px);
-  --fan-exit-offset: clamp(296px, 37vw, 436px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -661,28 +658,20 @@ img { display: block; max-width: 100%; }
 }
 
 .fan-phone {
+  /* Every phone permanently shows one screen. Its transform/opacity/etc.
+     are recomputed every animation frame in JS as a continuous function of
+     its distance from the carousel's current position — there is no
+     discrete "role" state and nothing is ever toggled between CSS classes,
+     so there's no per-property timing to get out of sync and no moment
+     where a stale class could cause a visible jump. */
   position: absolute;
   top: 50%;
   left: 50%;
-  transition:
-    transform 0.6s var(--ease-out),
-    opacity 0.6s var(--ease-out),
-    filter 0.6s var(--ease-out);
   cursor: pointer;
-  will-change: transform, opacity;
 }
-
-.fan-phone.hidden-left,
-.fan-phone.hidden-right {
-  opacity: 0;
-  pointer-events: none;
-  z-index: 0;
-  filter: blur(3px);
-}
-.fan-phone.hidden-left  { transform: translate(-50%, -50%) translateX(calc(-1 * var(--fan-exit-offset))) rotate(-12deg) scale(0.5); }
-.fan-phone.hidden-right { transform: translate(-50%, -50%) translateX(var(--fan-exit-offset)) rotate(12deg) scale(0.5); }
 
 .fan-phone .phone-wrap {
+  width: var(--fan-center-width);
   background: var(--gray-900);
   border-radius: 34px;
   padding: 8px;
@@ -707,23 +696,7 @@ img { display: block; max-width: 100%; }
   font-size: 15px;
   font-weight: 600;
   color: var(--green);
-  opacity: 0;
-  transition: opacity 0.5s;
 }
-
-.fan-phone.center { z-index: 4; transform: translate(-50%, -50%) scale(1); opacity: 1; filter: none; }
-.fan-phone.center .phone-wrap { width: var(--fan-center-width); }
-.fan-phone.center .fan-label { opacity: 1; }
-
-.fan-phone.left  { z-index: 3; transform: translate(-50%, -50%) translateX(calc(-1 * var(--fan-near-offset))) rotate(-5deg) scale(0.85); opacity: 0.82; filter: saturate(0.9); }
-.fan-phone.right { z-index: 3; transform: translate(-50%, -50%) translateX(var(--fan-near-offset)) rotate(5deg) scale(0.85); opacity: 0.82; filter: saturate(0.9); }
-.fan-phone.left .phone-wrap,
-.fan-phone.right .phone-wrap { width: var(--fan-side-width); }
-
-.fan-phone.far-left  { z-index: 2; transform: translate(-50%, -50%) translateX(calc(-1 * var(--fan-far-offset))) rotate(-9deg) scale(0.7); opacity: 0.38; filter: saturate(0.8); }
-.fan-phone.far-right { z-index: 2; transform: translate(-50%, -50%) translateX(var(--fan-far-offset)) rotate(9deg) scale(0.7); opacity: 0.38; filter: saturate(0.8); }
-.fan-phone.far-left .phone-wrap,
-.fan-phone.far-right .phone-wrap { width: var(--fan-outer-width); }
 
 .showcase-dots {
   display: flex;
