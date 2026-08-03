@@ -448,10 +448,22 @@
       return diff;
     }
 
+    function showcaseStateClass(diff) {
+      if (diff === 0) return 'center';
+      if (diff === -1) return 'left';
+      if (diff === 1) return 'right';
+      if (diff === -2) return 'far-left';
+      if (diff === 2) return 'far-right';
+      return diff < 0 ? 'hidden-left' : 'hidden-right';
+    }
+
+    // Each phone gets its correct position class at creation time (not in a
+    // separate pass after insertion) so it never briefly renders unstyled
+    // and full-opacity before animating into place.
     const showcasePhones = showcaseScreens.map((s, i) => {
       const el = document.createElement('div');
-      el.className = 'fan-phone';
-      el.innerHTML = `<div class="phone-wrap"><img src="${s.img}" alt="Roamly app screen: ${s.label}" loading="lazy" /></div><div class="fan-label">${s.label}</div>`;
+      el.className = `fan-phone ${showcaseStateClass(showcaseDiff(i, showcaseCenter))}`;
+      el.innerHTML = `<div class="phone-wrap"><img src="${s.img}" alt="Roamly app screen: ${s.label}" /></div><div class="fan-label">${s.label}</div>`;
       el.addEventListener('click', () => {
         showcaseCenter = i;
         updateShowcaseFan();
@@ -463,14 +475,7 @@
 
     function updateShowcaseFan() {
       showcasePhones.forEach((el, i) => {
-        const diff = showcaseDiff(i, showcaseCenter);
-        el.className = 'fan-phone';
-        if (diff === 0) el.classList.add('center');
-        else if (diff === -1) el.classList.add('left');
-        else if (diff === 1) el.classList.add('right');
-        else if (diff === -2) el.classList.add('far-left');
-        else if (diff === 2) el.classList.add('far-right');
-        else el.classList.add(diff < 0 ? 'hidden-left' : 'hidden-right');
+        el.className = `fan-phone ${showcaseStateClass(showcaseDiff(i, showcaseCenter))}`;
       });
       showcaseDots.forEach((d, i) => d.classList.toggle('active', i === showcaseCenter));
     }
