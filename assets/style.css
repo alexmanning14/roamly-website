@@ -657,6 +657,7 @@ img { display: block; max-width: 100%; }
   max-width: 1000px;
   margin: 0 auto;
   isolation: isolate;
+  touch-action: pan-y;
 }
 
 .fan-phone {
@@ -737,7 +738,7 @@ img { display: block; max-width: 100%; }
 .showcase-dots {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 16px;
   margin-top: 28px;
 }
 .showcase-dots button {
@@ -747,7 +748,14 @@ img { display: block; max-width: 100%; }
   background: transparent;
   cursor: pointer;
   padding: 0;
+  position: relative;
   transition: all 0.3s var(--ease-out);
+}
+.showcase-dots button::before {
+  /* enlarges the tap target without overlapping neighboring dots */
+  content: '';
+  position: absolute;
+  inset: -8px;
 }
 .showcase-dots button.active {
   background: var(--green);

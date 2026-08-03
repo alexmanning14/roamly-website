@@ -510,6 +510,44 @@
     showcaseFan.addEventListener('focusin', stopShowcaseAutoRotate);
     showcaseFan.addEventListener('focusout', startShowcaseAutoRotate);
 
+    // Swipe navigation for touch devices
+    let showcaseTouchStartX = 0;
+    let showcaseTouchStartY = 0;
+    let showcaseTouchActive = false;
+
+    showcaseFan.addEventListener('touchstart', (e) => {
+      const t = e.touches[0];
+      showcaseTouchStartX = t.clientX;
+      showcaseTouchStartY = t.clientY;
+      showcaseTouchActive = true;
+      stopShowcaseAutoRotate();
+    }, { passive: true });
+
+    showcaseFan.addEventListener('touchmove', (e) => {
+      if (!showcaseTouchActive) return;
+      const t = e.touches[0];
+      const dx = t.clientX - showcaseTouchStartX;
+      const dy = t.clientY - showcaseTouchStartY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    showcaseFan.addEventListener('touchend', (e) => {
+      if (!showcaseTouchActive) return;
+      showcaseTouchActive = false;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - showcaseTouchStartX;
+      const dy = t.clientY - showcaseTouchStartY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        showcaseCenter = dx < 0
+          ? (showcaseCenter + 1) % showcaseScreens.length
+          : (showcaseCenter - 1 + showcaseScreens.length) % showcaseScreens.length;
+        updateShowcaseFan();
+      }
+      restartShowcaseAutoRotate();
+    });
+
     updateShowcaseFan();
     startShowcaseAutoRotate();
 
