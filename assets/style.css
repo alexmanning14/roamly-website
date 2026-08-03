@@ -678,6 +678,14 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 20px 50px rgba(28,25,23,0.16), 0 6px 16px rgba(28,25,23,0.08), inset 0 1px 0 rgba(255,255,255,0.06);
   overflow: hidden;
   position: relative;
+  /* Fixes a WebKit/Safari hairline-seam artifact: a rounded + clipped
+     element nested inside an ancestor that's actively transformed (our
+     JS-driven .fan-phone) can render a thin seam once promoted to its
+     own compositing layer. Forcing the mask/compositing path below is
+     the standard fix for that specific, well-documented bug. */
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .fan-phone .phone-wrap::before {
   content: '';
