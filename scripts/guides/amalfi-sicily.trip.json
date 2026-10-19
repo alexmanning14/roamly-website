@@ -1,0 +1,503 @@
+{
+ "id": "3FB6FB54-7C20-4E9B-8CC3-0DE521E6D7E2",
+ "publishedId": "58053BFD-000C-4471-BB81-50A48EB8C489",
+ "name": "Romantic Escape to Sicily and Amalfi Coast",
+ "travelerCount": 2,
+ "days": [
+  {
+   "city": "Positano",
+   "country": "Italy",
+   "latitude": 40.6293854,
+   "longitude": 14.4822879,
+   "date": "2027-05-10T04:00:00Z",
+   "blocks": [
+    {
+     "id": "1CA475B8-34E1-4A25-BADE-5ED5AFC87704",
+     "type": "note",
+     "title": "Arrival and Transfer to Positano",
+     "startHour": 11.5,
+     "durationHours": 2,
+     "costUSD": 140,
+     "details": "Land at Naples Airport and take a private transfer along the scenic Amalfi Coast to Positano.",
+     "placeName": "Naples International Airport",
+     "mapPlace": null
+    },
+    {
+     "id": "F47B031B-FB83-4965-926E-8DFC79A904ED",
+     "type": "food",
+     "title": "Ristorante Da Vincenzo",
+     "startHour": 14,
+     "durationHours": 1.5,
+     "costUSD": 90,
+     "details": "Enjoy a welcoming late lunch featuring classic local Campania dishes and beautiful views.",
+     "placeName": "Ristorante Da Vincenzo",
+     "mapPlace": {
+      "name": "Da Vincenzo",
+      "latitude": 40.6277476,
+      "longitude": 14.4849747
+     }
+    },
+    {
+     "id": "784632CB-94C5-427A-8A4D-7B9FA2E1EEBD",
+     "type": "activity",
+     "title": "Balcony Limoncello Tasting",
+     "startHour": 18,
+     "durationHours": 1.5,
+     "costUSD": 50,
+     "details": "Sip artisanal limoncello on a private balcony while watching the sunset over the vertical town.",
+     "placeName": "Positano Cliffside",
+     "mapPlace": {
+      "name": "Positano Cliffside Villa Andrea",
+      "latitude": 40.628559,
+      "longitude": 14.48991
+     }
+    }
+   ]
+  },
+  {
+   "city": "Capri",
+   "country": "Italy",
+   "latitude": 40.5507075,
+   "longitude": 14.2428932,
+   "date": "2027-05-11T04:00:00Z",
+   "blocks": [
+    {
+     "id": "E852422A-38E2-4770-82CC-060C801F3684",
+     "type": "food",
+     "title": "Bar International",
+     "startHour": 9,
+     "durationHours": 1,
+     "costUSD": 20,
+     "details": "Start your morning with a fresh pastry and cappuccino right in the heart of Capri.",
+     "placeName": "Bar International",
+     "mapPlace": null
+    },
+    {
+     "id": "655660F6-96B8-474D-AE12-1D5229EFE007",
+     "type": "place",
+     "title": "Marina Grande",
+     "startHour": 10.25,
+     "durationHours": 0.5,
+     "costUSD": 0,
+     "details": "Head down to the bustling harbor to meet your captain for a day on the water.",
+     "placeName": "Marina Grande",
+     "mapPlace": {
+      "name": "Marina Grande",
+      "latitude": 40.5565546,
+      "longitude": 14.2390591
+     },
+     "hero": {
+      "file": "655660f6.jpg",
+      "attribution": "Dr. Blofeld · CC BY 2.5",
+      "source": "https://en.wikipedia.org/wiki/Marina_Grande,_Capri"
+     }
+    },
+    {
+     "id": "895CA16B-0489-4DD4-BD0F-32688477F101",
+     "type": "activity",
+     "title": "Gozzo Boat Faraglioni Cruise",
+     "startHour": 11,
+     "durationHours": 3,
+     "costUSD": 350,
+     "details": "Cruise around the iconic rock formations and swim in secluded blue sea coves.",
+     "placeName": "Faraglioni",
+     "mapPlace": {
+      "name": "Faraglioni",
+      "latitude": 40.540163,
+      "longitude": 14.2528574
+     },
+     "hero": {
+      "file": "895ca16b.jpg",
+      "attribution": "Alessio Maffeis from Stockholm, Sweden · CC BY 2.0",
+      "source": "https://www.wikidata.org/wiki/Q103901155"
+     }
+    },
+    {
+     "id": "4F0811EC-90EA-4E9E-A2BC-5C8B1F1D363C",
+     "type": "food",
+     "title": "Ristorante La Fontelina",
+     "startHour": 14.5,
+     "durationHours": 2,
+     "costUSD": 160,
+     "details": "Dine on fresh seafood right by the water at this legendary beachside restaurant.",
+     "placeName": "Ristorante La Fontelina",
+     "mapPlace": {
+      "name": "Fontelina Beach Club",
+      "latitude": 40.543829,
+      "longitude": 14.251124
+     }
+    },
+    {
+     "id": "72162A99-70F7-443F-9FF5-A68C08503BC4",
+     "type": "place",
+     "title": "Piazzetta di Capri",
+     "startHour": 17,
+     "durationHours": 1.5,
+     "costUSD": 15,
+     "details": "Stroll through the lively central square and enjoy an afternoon gelato.",
+     "placeName": "Piazzetta di Capri",
+     "mapPlace": {
+      "name": "Piazzetta di Capri",
+      "latitude": 40.5507302,
+      "longitude": 14.2426881
+     }
+    }
+   ]
+  },
+  {
+   "city": "Ravello",
+   "country": "Italy",
+   "latitude": 40.6454253,
+   "longitude": 14.6082784,
+   "date": "2027-05-12T04:00:00Z",
+   "blocks": [
+    {
+     "id": "7E0591BE-1094-4C35-8AEE-C804C85A8E25",
+     "type": "food",
+     "title": "Caffe Gran Aladino",
+     "startHour": 9,
+     "durationHours": 1,
+     "costUSD": 25,
+     "details": "Enjoy breakfast overlooking the stunning coastline from the hilltop town of Ravello.",
+     "placeName": "Caffe Gran Aladino",
+     "mapPlace": null
+    },
+    {
+     "id": "FDB9E715-0E65-42EC-BF08-D88FA6C1D626",
+     "type": "place",
+     "title": "Villa Cimbrone Gardens",
+     "startHour": 10.25,
+     "durationHours": 2,
+     "costUSD": 20,
+     "details": "Walk through the romantic cliffside gardens and visit the famous Terrace of Infinity.",
+     "placeName": "Villa Cimbrone",
+     "mapPlace": {
+      "name": "Hotel Villa Cimbrone",
+      "latitude": 40.6442346,
+      "longitude": 14.6112049
+     },
+     "hero": {
+      "file": "fdb9e715.jpg",
+      "attribution": "Jensens · Public domain",
+      "source": "https://en.wikipedia.org/wiki/Villa_Cimbrone"
+     }
+    },
+    {
+     "id": "C7546117-131C-45BE-B8EF-555319C3C20A",
+     "type": "note",
+     "title": "Scenic Walk to Amalfi",
+     "startHour": 12.5,
+     "durationHours": 1,
+     "costUSD": 0,
+     "details": "Descend the ancient stone steps through lemon groves down to the coastal town of Amalfi.",
+     "placeName": "Ravello Path",
+     "mapPlace": null
+    },
+    {
+     "id": "B8DEBF38-7129-4C2B-A403-9B0C5675B0AB",
+     "type": "food",
+     "title": "Ristorante Lido Azzurro",
+     "startHour": 13.75,
+     "durationHours": 1.5,
+     "costUSD": 110,
+     "details": "Savor a waterfront lunch featuring the catch of the day and local white wine.",
+     "placeName": "Ristorante Lido Azzurro",
+     "mapPlace": {
+      "name": "Lido Azzurro Ristorante",
+      "latitude": 40.6328837,
+      "longitude": 14.5987303
+     }
+    },
+    {
+     "id": "FA7C5912-9B60-47EC-8629-889EC2EA7101",
+     "type": "place",
+     "title": "Amalfi Cathedral",
+     "startHour": 15.5,
+     "durationHours": 1,
+     "costUSD": 8,
+     "details": "Explore the striking medieval cathedral and its peaceful cloister in the main square.",
+     "placeName": "Amalfi Cathedral",
+     "mapPlace": {
+      "name": "Amalfi Cathedral",
+      "latitude": 40.6344243,
+      "longitude": 14.6033406
+     },
+     "hero": {
+      "file": "fa7c5912.jpg",
+      "attribution": "Berthold Werner · CC BY-SA 3.0",
+      "source": "https://en.wikipedia.org/wiki/Amalfi_Cathedral"
+     }
+    }
+   ]
+  },
+  {
+   "city": "Taormina",
+   "country": "Italy",
+   "latitude": 37.8517506,
+   "longitude": 15.2859584,
+   "date": "2027-05-13T04:00:00Z",
+   "blocks": [
+    {
+     "id": "59FB328A-7904-4BCB-8465-53E9AEA75D75",
+     "type": "note",
+     "title": "Flight to Sicily",
+     "startHour": 11.75,
+     "durationHours": 1.5,
+     "costUSD": 120,
+     "details": "Arrive in Catania and take a comfortable private transfer up to the historic town of Taormina.",
+     "placeName": "Catania-Fontanarossa Airport",
+     "mapPlace": null
+    },
+    {
+     "id": "779B8B8B-3883-43A1-A9AD-14E5EE57B5D5",
+     "type": "place",
+     "title": "Corso Umberto",
+     "startHour": 17.5,
+     "durationHours": 1.5,
+     "costUSD": 0,
+     "details": "Take a relaxed evening stroll down the vibrant pedestrian main street framed by historic buildings.",
+     "placeName": "Corso Umberto",
+     "mapPlace": {
+      "name": "Corso Umberto I",
+      "latitude": 37.851619205491936,
+      "longitude": 15.285611427138349
+     }
+    },
+    {
+     "id": "1A116D32-585E-4589-BEAD-472DE2492FB6",
+     "type": "food",
+     "title": "Trattoria da Nino",
+     "startHour": 19.25,
+     "durationHours": 1.5,
+     "costUSD": 80,
+     "details": "Enjoy authentic Sicilian pasta alla Norma under the stars on a charming outdoor terrace.",
+     "placeName": "Trattoria da Nino",
+     "mapPlace": {
+      "name": "Trattoria Da Nino",
+      "latitude": 37.8540298,
+      "longitude": 15.2916062
+     }
+    }
+   ]
+  },
+  {
+   "city": "Castiglione di Sicilia",
+   "country": "Italy",
+   "latitude": 37.8826786,
+   "longitude": 15.1223412,
+   "date": "2027-05-14T04:00:00Z",
+   "blocks": [
+    {
+     "id": "0ABA882A-F102-46E9-991F-F028514DC567",
+     "type": "place",
+     "title": "Castello di Alemanna",
+     "startHour": 9.5,
+     "durationHours": 1.5,
+     "costUSD": 0,
+     "details": "Explore the historic ruins of this Teutonic knight castle nestled within the agricultural landscape of the Alcantara valley.",
+     "placeName": "Castello di Alemanna",
+     "mapPlace": null
+    },
+    {
+     "id": "6FEE1131-610D-4FE3-87B7-EDE35E489F3D",
+     "type": "food",
+     "title": "Ristorante Provvidenza",
+     "startHour": 11.5,
+     "durationHours": 1.5,
+     "costUSD": 70,
+     "details": "Enjoy authentic Sicilian dishes prepared with local ingredients and regional culinary traditions.",
+     "placeName": "Ristorante Provvidenza",
+     "mapPlace": null
+    },
+    {
+     "id": "B4BA69A9-6ED5-4700-9F6F-74A29294965B",
+     "type": "activity",
+     "title": "Tenuta di Fessina",
+     "startHour": 13.5,
+     "durationHours": 2.5,
+     "costUSD": 120,
+     "details": "Participate in a volcanic wine tasting paired with artisanal local cheeses on the fertile slopes of Mount Etna.",
+     "placeName": "Tenuta di Fessina",
+     "mapPlace": {
+      "name": "Tenuta di Fessina",
+      "latitude": 37.8564568,
+      "longitude": 15.094201
+     }
+    },
+    {
+     "id": "4C672075-DB87-4401-AFD2-544264F24A7D",
+     "type": "place",
+     "title": "Gole dell Alcantara",
+     "startHour": 16.5,
+     "durationHours": 1.5,
+     "costUSD": 15,
+     "details": "Admire the striking basalt lava gorges carved by the Alcantara river over millennia.",
+     "placeName": "Gole dell Alcantara",
+     "mapPlace": {
+      "name": "Alcantara Gorge botanic and geological park",
+      "latitude": 37.8790013,
+      "longitude": 15.175513
+     },
+     "hero": {
+      "file": "4c672075.jpg",
+      "attribution": "Eleassar · CC BY-SA 4.0",
+      "source": "https://www.wikidata.org/wiki/Q1536232"
+     }
+    },
+    {
+     "id": "3A08BD66-9E3F-49DB-A69E-FE46DC30520F",
+     "type": "food",
+     "title": "A Muntagna",
+     "startHour": 19,
+     "durationHours": 1.5,
+     "costUSD": 80,
+     "details": "Dine on local specialties and fresh pasta in a cozy dining room surrounded by Etna scenery.",
+     "placeName": "A Muntagna",
+     "mapPlace": null
+    }
+   ]
+  },
+  {
+   "city": "Taormina",
+   "country": "Italy",
+   "latitude": 37.8517506,
+   "longitude": 15.2859584,
+   "date": "2027-05-15T04:00:00Z",
+   "blocks": [
+    {
+     "id": "DD94EFBE-3CD0-4DEA-A7EF-2EA9B3218956",
+     "type": "place",
+     "title": "Teatro Antico di Taormina",
+     "startHour": 9.5,
+     "durationHours": 2,
+     "costUSD": 30,
+     "details": "Explore the magnificent ancient Greco-Roman theater offering sweeping panoramic views of the Ionian Sea and Mount Etna.",
+     "placeName": "Teatro Antico di Taormina",
+     "mapPlace": {
+      "name": "Ancient Theatre of Taormina",
+      "latitude": 37.8522085,
+      "longitude": 15.292089
+     },
+     "hero": {
+      "file": "dd94efbe.jpg",
+      "attribution": "Derbrauni · CC BY 4.0",
+      "source": "https://en.wikipedia.org/wiki/Ancient_theatre_of_Taormina"
+     }
+    },
+    {
+     "id": "DD10CD02-FEF9-4394-86BC-760FB53FF899",
+     "type": "food",
+     "title": "Bam Bar",
+     "startHour": 12,
+     "durationHours": 1,
+     "costUSD": 20,
+     "details": "Refresh with traditional Sicilian granita served with fresh whipped cream and brioche.",
+     "placeName": "Bam Bar",
+     "mapPlace": {
+      "name": "Bam Bar",
+      "latitude": 37.8531573,
+      "longitude": 15.2888542
+     }
+    },
+    {
+     "id": "5F1C26BF-FED9-4F93-ACE8-483F637017BA",
+     "type": "place",
+     "title": "Villa Comunale di Taormina",
+     "startHour": 13.5,
+     "durationHours": 1.5,
+     "costUSD": 0,
+     "details": "Stroll through the lush public gardens featuring eclectic architectural follies and stunning coastal vistas.",
+     "placeName": "Villa Comunale di Taormina",
+     "mapPlace": {
+      "name": "Villa Comunale di Taormina",
+      "latitude": 37.85087,
+      "longitude": 15.28994
+     },
+     "hero": {
+      "file": "5f1c26bf.jpg",
+      "attribution": "Patrick Giraud. · CC BY-SA 2.5",
+      "source": "https://www.wikidata.org/wiki/Q100997768"
+     }
+    },
+    {
+     "id": "8514B38C-BA4B-458B-851C-0D8EE24D7E70",
+     "type": "food",
+     "title": "Osteria da Rita",
+     "startHour": 15.5,
+     "durationHours": 1.5,
+     "costUSD": 65,
+     "details": "Savor authentic Sicilian pasta alla Norma in an intimate and welcoming atmosphere.",
+     "placeName": "Osteria da Rita",
+     "mapPlace": {
+      "name": "Osteria Rita",
+      "latitude": 37.8521746,
+      "longitude": 15.2879798
+     }
+    }
+   ]
+  },
+  {
+   "city": "Taormina",
+   "country": "Italy",
+   "latitude": 37.8517506,
+   "longitude": 15.2859584,
+   "date": "2027-05-16T04:00:00Z",
+   "blocks": [
+    {
+     "id": "534C3CBC-ED4F-497E-B864-3FCBF9EE7CD3",
+     "type": "food",
+     "title": "Caffe Wunderbar",
+     "startHour": 8.5,
+     "durationHours": 1,
+     "costUSD": 20,
+     "details": "Enjoy a relaxing morning coffee and pastry on the historic Piazza IX Aprile overlooking the sea.",
+     "placeName": "Caffe Wunderbar",
+     "mapPlace": {
+      "name": "Wunderbar",
+      "latitude": 37.851602,
+      "longitude": 15.2853662
+     }
+    },
+    {
+     "id": "200A1F58-4A44-41E3-BCF0-CEBE0229AC4D",
+     "type": "place",
+     "title": "Isola Bella",
+     "startHour": 10,
+     "durationHours": 1,
+     "costUSD": 0,
+     "details": "Take a final morning walk along the pebble beach of the Isola Bella nature reserve before your journey home.",
+     "placeName": "Isola Bella",
+     "mapPlace": {
+      "name": "Isola Bella",
+      "latitude": 37.8503386,
+      "longitude": 15.3006839
+     },
+     "hero": {
+      "file": "200a1f58.jpg",
+      "attribution": "Michal Osmenda from Brussels, Belgium · CC BY-SA 2.0",
+      "source": "https://www.wikidata.org/wiki/Q642924"
+     }
+    }
+   ]
+  }
+ ],
+ "hotels": [
+  {
+   "name": "Hotel Positano Art Pasitea",
+   "city": "Positano",
+   "checkIn": "2027-05-10T04:00:00Z",
+   "checkOut": "2027-05-13T04:00:00Z",
+   "costUSD": 1250
+  },
+  {
+   "name": "Hotel Villa Belvedere",
+   "city": "Taormina",
+   "checkIn": "2027-05-13T04:00:00Z",
+   "checkOut": "2027-05-16T04:00:00Z",
+   "costUSD": 950
+  }
+ ],
+ "flightsUSD": 3780,
+ "_patches": [],
+ "shareUrl": "https://share.roamly.us/share/fy0YdTc5Qu"
+}

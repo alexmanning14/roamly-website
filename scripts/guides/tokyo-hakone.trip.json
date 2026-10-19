@@ -1,0 +1,658 @@
+{
+ "id": "8A8E9342-E071-46AC-A288-8DD8250A7A60",
+ "name": "Tokyo Adventure: Mount Fuji Trains and Tokyo Beats",
+ "travelerCount": 2,
+ "days": [
+  {
+   "city": "Tokyo",
+   "country": "Japan",
+   "latitude": 35.6762,
+   "longitude": 139.6503,
+   "date": "2027-10-10T04:00:00Z",
+   "blocks": [
+    {
+     "id": "C1C6CB76-D58A-42B6-A852-768088606869",
+     "type": "place",
+     "title": "Tokyo Metropolitan Government Building",
+     "startHour": 18.5,
+     "durationHours": 1,
+     "costUSD": 0,
+     "details": "Head straight to the 45th floor observation deck for a stunning, free panoramic view of Tokyo's vast neon cityscape at night.",
+     "placeName": "Tokyo Metropolitan Government Building",
+     "mapPlace": {
+      "name": "Tokyo Metropolitan Government Building",
+      "latitude": 35.6896,
+      "longitude": 139.6917
+     },
+     "hero": {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Tokyo_Metropolitan_Government_Building_2024.jpg/960px-Tokyo_Metropolitan_Government_Building_2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "attribution": "Kakidai · CC BY-SA 4.0",
+      "source": "https://en.wikipedia.org/wiki/Tokyo_Metropolitan_Government_Building",
+      "file": "c1c6cb76.jpg"
+     }
+    },
+    {
+     "id": "9BD8EB2B-66CE-4B56-8198-025252B34B0E",
+     "type": "food",
+     "title": "Omoide Yokocho",
+     "startHour": 19.75,
+     "durationHours": 1.5,
+     "costUSD": 40,
+     "details": "Squeeze into this atmospheric, narrow alleyway to enjoy grilled yakitori skewers and a cold drink in a nostalgic retro Tokyo setting.",
+     "placeName": "Omoide Yokocho",
+     "mapPlace": {
+      "name": "Omoide Yokocho",
+      "latitude": 35.6929,
+      "longitude": 139.6995
+     }
+    }
+   ]
+  },
+  {
+   "city": "Tokyo",
+   "country": "Japan",
+   "latitude": 35.6762,
+   "longitude": 139.6503,
+   "date": "2027-10-11T04:00:00Z",
+   "blocks": [
+    {
+     "id": "B4722C10-8627-4028-9D65-D9969124E56F",
+     "type": "place",
+     "title": "Senso-ji Temple",
+     "startHour": 9.5,
+     "durationHours": 1.5,
+     "costUSD": 0,
+     "details": "Explore Tokyo's oldest and most iconic Buddhist temple, starting at the famous Kaminarimon Gate with its giant red lantern.",
+     "placeName": "Senso-ji",
+     "mapPlace": {
+      "name": "Senso-ji",
+      "latitude": 35.7146948,
+      "longitude": 139.7967499
+     },
+     "hero": {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Sensoji_2023.jpg/960px-Sensoji_2023.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "attribution": "Akonnchiroll · CC0",
+      "source": "https://en.wikipedia.org/wiki/Sens%C5%8D-ji",
+      "file": "b4722c10.jpg"
+     }
+    },
+    {
+     "id": "08AD0947-5B47-4528-BD77-91FB1867B033",
+     "type": "food",
+     "title": "Nakamise Shopping Street",
+     "startHour": 11.25,
+     "durationHours": 1,
+     "costUSD": 15,
+     "details": "Sample local street food treats along this historic approach, including freshly baked ningyo-yaki cakes and sweet dango skewers.",
+     "placeName": "Nakamise-dori Street",
+     "mapPlace": {
+      "name": "Nakamise-dori",
+      "latitude": 35.7119,
+      "longitude": 139.7964
+     }
+    },
+    {
+     "id": "B0FBA871-35F7-4268-9F50-9F7406DC3D78",
+     "type": "food",
+     "title": "Asakusa Gyukatsu",
+     "startHour": 12.5,
+     "durationHours": 1.25,
+     "costUSD": 45,
+     "details": "Indulge in incredibly tender, rare beef cutlets coated in crispy breadcrumbs, which you sear to your liking on a personal hot stone.",
+     "placeName": "Asakusa Gyukatsu",
+     "mapPlace": {
+      "name": "Asakusa Gyukatsu",
+      "latitude": 35.7108013,
+      "longitude": 139.7959467
+     }
+    },
+    {
+     "id": "4315E316-B599-41A7-AC7F-3FC55472DF0F",
+     "type": "activity",
+     "title": "Akihabara Electric Town Architecture Tour",
+     "startHour": 14,
+     "durationHours": 2.5,
+     "costUSD": 0,
+     "details": "Wander through the futuristic streets lined with multi-story electronics department stores, neon gaming arcades, and anime billboards.",
+     "placeName": "Akihabara",
+     "mapPlace": {
+      "name": "Akihabara",
+      "latitude": 35.7021708,
+      "longitude": 139.7744091
+     },
+     "hero": {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Sotokanda%2C_Akihabara_Electric_Town_at_night_20231114.png/960px-Sotokanda%2C_Akihabara_Electric_Town_at_night_20231114.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "attribution": "Phineyes · CC0",
+      "source": "https://en.wikipedia.org/wiki/Akihabara",
+      "file": "4315e316.jpg"
+     }
+    },
+    {
+     "id": "B8B83F9C-7FEB-4FCF-866E-97AF3A52F04F",
+     "type": "food",
+     "title": "Kanda Matsuya",
+     "startHour": 18,
+     "durationHours": 1.5,
+     "costUSD": 35,
+     "details": "Dine at a legendary, historic soba restaurant housed in a beautiful pre-war wooden building close to Akihabara.",
+     "placeName": "Kanda Matsuya",
+     "mapPlace": {
+      "name": "Kanda-Matsuya",
+      "latitude": 35.696111,
+      "longitude": 139.7687866
+     }
+    }
+   ]
+  },
+  {
+   "city": "Tokyo",
+   "country": "Japan",
+   "latitude": 35.6762,
+   "longitude": 139.6503,
+   "date": "2027-10-12T04:00:00Z",
+   "blocks": [
+    {
+     "id": "D120F1F5-8D3A-4DF1-8656-28DB1EA9498D",
+     "type": "place",
+     "title": "Meiji Jingu Shrine",
+     "startHour": 9.5,
+     "durationHours": 1.5,
+     "costUSD": 0,
+     "details": "Walk beneath massive wooden torii gates into a serene, 170 acre forest in the heart of the city dedicated to Emperor Meiji.",
+     "placeName": "Meiji Jingu",
+     "mapPlace": {
+      "name": "Meiji Jingu",
+      "latitude": 35.6762064,
+      "longitude": 139.699375
+     },
+     "hero": {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Meiji_Jingu_2023-3.jpg/960px-Meiji_Jingu_2023-3.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "attribution": "Akonnchiroll · CC BY-SA 4.0",
+      "source": "https://en.wikipedia.org/wiki/Meiji_Shrine",
+      "file": "d120f1f5.jpg"
+     }
+    },
+    {
+     "id": "F855BD08-9AD0-4199-8B7D-B72146E79B3C",
+     "type": "place",
+     "title": "Takeshita Street",
+     "startHour": 11.25,
+     "durationHours": 1.5,
+     "costUSD": 15,
+     "details": "Experience the colorful epicenter of Japanese youth culture and extreme street fashion, famous for its giant sweet crepes.",
+     "placeName": "Takeshita Street",
+     "mapPlace": {
+      "name": "Takeshita-dori Street",
+      "latitude": 35.67113084850488,
+      "longitude": 139.70499975197146
+     },
+     "hero": {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/JRE-Harajuku-Station-07.jpg/960px-JRE-Harajuku-Station-07.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "attribution": "Rs1421 · CC BY-SA 3.0",
+      "source": "https://en.wikipedia.org/wiki/Harajuku",
+      "file": "f855bd08.jpg"
+     }
+    },
+    {
+     "id": "0609D791-4862-444F-98D9-B9C66F8E126E",
+     "type": "food",
+     "title": "Harajuku Gyozaro",
+     "startHour": 13,
+     "durationHours": 1,
+     "costUSD": 25,
+     "details": "Feast on simple but incredibly delicious pan-fried and steamed garlic chive gyoza at this local favorite spot.",
+     "placeName": "Harajuku Gyozaro",
+     "mapPlace": {
+      "name": "Harajuku Gyozaro",
+      "latitude": 35.6688,
+      "longitude": 139.7075
+     }
+    },
+    {
+     "id": "33A72B32-029B-4C9D-93C1-3629B22D3F2A",
+     "type": "place",
+     "title": "Shibuya Crossing",
+     "startHour": 14.5,
+     "durationHours": 1,
+     "costUSD": 0,
+     "details": "Walk across the world's busiest pedestrian intersection and snap a photo from the second floor window views nearby.",
+     "placeName": "Shibuya Crossing",
+     "mapPlace": {
+      "name": "Shibuya Crossing",
+      "latitude": 35.6595,
+      "longitude": 139.7005
+     },
+     "hero": {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Shibuya_Crossing%2C_Aerial.jpg/960px-Shibuya_Crossing%2C_Aerial.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "attribution": "David Kernan · CC BY 4.0",
+      "source": "https://en.wikipedia.org/wiki/Shibuya_Crossing",
+      "file": "33a72b32.jpg"
+     }
+    },
+    {
+     "id": "E20C80FE-F61C-41BF-96E1-C419F895597A",
+     "type": "activity",
+     "title": "Live Indie Music at Shibuya Ruby Room",
+     "startHour": 20,
+     "durationHours": 3,
+     "costUSD": 40,
+     "details": "Dive into Shibuya's underground music scene at this intimate, legendary venue known for hosting great local indie bands and DJs.",
+     "placeName": "Ruby Room",
+     "mapPlace": {
+      "name": "Ruby Room",
+      "latitude": 35.659576,
+      "longitude": 139.6976519
+     }
+    }
+   ]
+  },
+  {
+   "city": "Hakone",
+   "country": "Japan",
+   "latitude": 35.2323379,
+   "longitude": 139.1069197,
+   "date": "2027-10-13T04:00:00Z",
+   "blocks": [
+    {
+     "id": "65CBF9A9-1AC0-4A42-853D-88917A9E289E",
+     "type": "activity",
+     "title": "Shinkansen Bullet Train to Odawara",
+     "startHour": 9,
+     "durationHours": 1,
+     "costUSD": 70,
+     "details": "Experience Japan's legendary high-speed train, the Shinkansen, as you zip from Tokyo to the gateway of Hakone in just over 30 minutes.",
+     "placeName": "Tokyo Station",
+     "mapPlace": {
+      "name": "Tokyo Station",
+      "latitude": 35.681072,
+      "longitude": 139.7674266
+     },
+     "hero": {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Tokyo-STA_Marunouchi-Entrance_2023.jpg/960px-Tokyo-STA_Marunouchi-Entrance_2023.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "attribution": "MaedaAkihiko · CC BY-SA 4.0",
+      "source": "https://en.wikipedia.org/wiki/Tokyo_Station",
+      "file": "65cbf9a9.jpg"
+     }
+    },
+    {
+     "id": "288C449B-2ECF-4809-9B98-4B2AC7AE8C9B",
+     "type": "place",
+     "title": "Hakone Tozan Railway",
+     "startHour": 10.5,
+     "durationHours": 1,
+     "costUSD": 16,
+     "details": "Ride Japan's oldest mountain railway as it winds slowly up steep, forested valleys, offering beautiful views of the Hakone region.",
+     "placeName": "Hakone Tozan Railway",
+     "mapPlace": {
+      "name": "Hakone-Yumoto Station",
+      "latitude": 35.233,
+      "longitude": 139.104
+     }
+    },
+    {
+     "id": "8D8ADF3D-9CFC-4DBB-8006-91C0D639D879",
+     "type": "food",
+     "title": "Gyoza Center",
+     "startHour": 12,
+     "durationHours": 1.25,
+     "costUSD": 30,
+     "details": "Enjoy a cozy lunch featuring a wide variety of unique gyoza dumplings, including deep-fried and soup-style variations.",
+     "placeName": "Gyoza Center",
+     "mapPlace": {
+      "name": "Hokone Gyoza Center",
+      "latitude": 35.2466552,
+      "longitude": 139.0478075
+     }
+    },
+    {
+     "id": "19A4E178-6FE9-4884-8123-E1682030A325",
+     "type": "activity",
+     "title": "Hakone Ropeway and Owakudani",
+     "startHour": 13.5,
+     "durationHours": 2,
+     "costUSD": 45,
+     "details": "Soar over active volcanic valleys on the ropeway and taste the famous black eggs boiled in the natural hot springs, with Mount Fuji visible on a clear day.",
+     "placeName": "Owakudani",
+     "mapPlace": {
+      "name": "Hakone Owakudani",
+      "latitude": 35.2433742,
+      "longitude": 139.0215097
+     },
+     "hero": {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Owakudani_-_Hakone_%2827369344357%29.jpg/960px-Owakudani_-_Hakone_%2827369344357%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "attribution": "Ajay Suresh from New York, NY, USA · CC BY 2.0",
+      "source": "https://en.wikipedia.org/wiki/%C5%8Cwakudani",
+      "file": "19a4e178.jpg"
+     }
+    },
+    {
+     "id": "7EE29BA0-C4EC-4F8E-8083-EEE40DD44637",
+     "type": "activity",
+     "title": "Hakone Yuryo Onsen",
+     "startHour": 16,
+     "durationHours": 2.5,
+     "costUSD": 40,
+     "details": "Relax and unwind in traditional open-air hot spring baths surrounded by dense, peaceful forest foliage.",
+     "placeName": "Hakone Yuryo",
+     "mapPlace": {
+      "name": "Hakone Yuryo",
+      "latitude": 35.2297,
+      "longitude": 139.0962
+     }
+    }
+   ]
+  },
+  {
+   "city": "Hakone",
+   "country": "Japan",
+   "latitude": 35.2323379,
+   "longitude": 139.1069197,
+   "date": "2027-10-14T04:00:00Z",
+   "blocks": [
+    {
+     "id": "E32827E2-C053-408F-AD48-2A317D4CE071",
+     "type": "place",
+     "title": "Hakone Shrine",
+     "startHour": 9,
+     "durationHours": 1.5,
+     "costUSD": 0,
+     "details": "Walk through the iconic red torii gate rising out of the calm waters of Lake Ashi and explore the serene forest pathway up to the main shrine.",
+     "placeName": "Hakone Shrine",
+     "mapPlace": {
+      "name": "Hakone Jinja",
+      "latitude": 35.2047753,
+      "longitude": 139.0253547
+     },
+     "hero": {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Hakonejinja_-01.jpg/960px-Hakonejinja_-01.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "attribution": "Aimaimyi · CC BY-SA 3.0",
+      "source": "https://en.wikipedia.org/wiki/Hakone_Shrine",
+      "file": "e32827e2.jpg"
+     }
+    },
+    {
+     "id": "8F05DE4C-671B-4388-A3B6-41DE0FB94B29",
+     "type": "activity",
+     "title": "Lake Ashi Sightseeing Cruise",
+     "startHour": 11,
+     "durationHours": 1,
+     "costUSD": 30,
+     "details": "Board a unique pirate-themed ship for a panoramic cruise across the lake, offering stunning views of Mount Fuji on a clear autumn morning.",
+     "placeName": "Lake Ashi",
+     "mapPlace": {
+      "name": "Moto-Hakone Port",
+      "latitude": 35.201,
+      "longitude": 139.027
+     },
+     "hero": {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/260505_Moto-Hakone_Hakone_Japan01s3.jpg/960px-260505_Moto-Hakone_Hakone_Japan01s3.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "attribution": "663highland · CC BY-SA 4.0",
+      "source": "https://en.wikipedia.org/wiki/Lake_Ashi",
+      "file": "8f05de4c.jpg"
+     }
+    },
+    {
+     "id": "07AD7E63-B5C8-4FD1-980F-42CE0E6D7883",
+     "type": "food",
+     "title": "Bakery and Table Hakone",
+     "startHour": 12.5,
+     "durationHours": 1.5,
+     "costUSD": 40,
+     "details": "Enjoy freshly baked goods and a hearty lunch with a beautiful view of Lake Ashi, featuring an outdoor footbath terrace where you can soak your feet while dining.",
+     "placeName": "Bakery and Table Hakone",
+     "mapPlace": {
+      "name": "Bakery & Table Hakone",
+      "latitude": 35.2017738,
+      "longitude": 139.030939
+     }
+    },
+    {
+     "id": "828A5CE7-C108-4268-8F1E-3EAAABD47139",
+     "type": "activity",
+     "title": "Hakone Old Tokaido Road Hike",
+     "startHour": 14.0,
+     "durationHours": 2.5,
+     "costUSD": 0,
+     "details": "Hike along the historic stone-paved highway preserved under giant cedar trees, tracing the steps of travelers from the Edo period.",
+     "placeName": "Old Tokaido Highway",
+     "mapPlace": {
+      "name": "Old Tokaido Road",
+      "latitude": 35.202,
+      "longitude": 139.04
+     }
+    },
+    {
+     "id": "9553A88A-6EF7-41C9-A5A9-01305C81F0CA",
+     "type": "food",
+     "title": "Amazake-chaya Tea House",
+     "startHour": 15.5,
+     "durationHours": 1,
+     "costUSD": 15,
+     "details": "Warm up at this historic 400-year-old thatched-roof tea house with traditional hot sweet sake (non-alcoholic) and sweet grilled mochi.",
+     "placeName": "Amazake-chaya",
+     "mapPlace": {
+      "name": "Amazake Teahouse",
+      "latitude": 35.2022228,
+      "longitude": 139.0487539
+     }
+    }
+   ]
+  },
+  {
+   "city": "Tokyo",
+   "country": "Japan",
+   "latitude": 35.6762,
+   "longitude": 139.6503,
+   "date": "2027-10-15T04:00:00Z",
+   "blocks": [
+    {
+     "id": "38B4A0F1-241B-4B8B-9BAC-A2145A52D588",
+     "type": "place",
+     "title": "Shimokitazawa Neighborhood Walk",
+     "startHour": 13,
+     "durationHours": 2.5,
+     "costUSD": 0,
+     "details": "Spend your afternoon exploring Tokyo's coolest bohemian district, famous for its narrow alleys, quirky vibe, and incredible selection of vintage fashion.",
+     "placeName": "Shimokitazawa",
+     "mapPlace": {
+      "name": "Shimokitazawa",
+      "latitude": 35.6613,
+      "longitude": 139.668
+     },
+     "hero": {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Shimokitazawa_Street_2015.jpg/960px-Shimokitazawa_Street_2015.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "attribution": "Aw1805 · CC BY-SA 4.0",
+      "source": "https://en.wikipedia.org/wiki/Shimokitazawa",
+      "file": "38b4a0f1.jpg"
+     }
+    },
+    {
+     "id": "883AB474-B27A-44BB-9770-683F69D12FA1",
+     "type": "food",
+     "title": "Shirube Shimokitazawa",
+     "startHour": 16,
+     "durationHours": 1.5,
+     "costUSD": 60,
+     "details": "Indulge in a fun, high-energy izakaya dinner featuring outstanding grilled mackerel, creative small plates, and a great selection of sake.",
+     "placeName": "Shirube Shimokitazawa",
+     "mapPlace": {
+      "name": "Shirubee Shimokitazawa-Shop",
+      "latitude": 35.6602481,
+      "longitude": 139.6668921
+     }
+    },
+    {
+     "id": "8F9041C3-6722-4FC7-8F51-522738F968A3",
+     "type": "food",
+     "title": "BrewDog Roppongi",
+     "startHour": 18.5,
+     "durationHours": 2,
+     "costUSD": 50,
+     "details": "Head over to Roppongi to sample a wide array of premium craft beers in an upscale, energetic bar setting with a mix of local and international drafts.",
+     "placeName": "BrewDog Roppongi",
+     "mapPlace": {
+      "name": "BrewDog Roppongi",
+      "latitude": 35.6621157,
+      "longitude": 139.7334317
+     }
+    },
+    {
+     "id": "C9D72D86-8872-4CCF-AE35-976A28997C35",
+     "type": "activity",
+     "title": "Bauhaus Roppongi",
+     "startHour": 21,
+     "durationHours": 3,
+     "costUSD": 80,
+     "details": "Experience the ultimate Tokyo rock bar where a highly talented house band plays classic rock hits from the 70s, 80s, and 90s, keeping the crowd singing along.",
+     "placeName": "Bauhaus",
+     "mapPlace": {
+      "name": "Rock Bar Bauhaus Roppongi",
+      "latitude": 35.6642636,
+      "longitude": 139.7308494
+     }
+    }
+   ]
+  },
+  {
+   "city": "Tokyo",
+   "country": "Japan",
+   "latitude": 35.6762,
+   "longitude": 139.6503,
+   "date": "2027-10-16T04:00:00Z",
+   "blocks": [
+    {
+     "id": "62D3BF35-7C6A-44C0-8053-D11EB006479B",
+     "type": "food",
+     "title": "Tsukiji Outer Market",
+     "startHour": 8.5,
+     "durationHours": 2.5,
+     "costUSD": 70,
+     "details": "Graze your way through legendary food stalls trying fresh sea urchin, Wagyu skewers, tamagoyaki sweet omelets, and freshly prepared sushi for breakfast.",
+     "placeName": "Tsukiji Outer Market",
+     "mapPlace": {
+      "name": "Tsukiji Outer Market",
+      "latitude": 35.6655,
+      "longitude": 139.7707
+     }
+    },
+    {
+     "id": "0D42E60B-3366-41E2-A9F1-3DC04EB53C23",
+     "type": "place",
+     "title": "Ginza Six",
+     "startHour": 11.5,
+     "durationHours": 2,
+     "costUSD": 0,
+     "details": "Explore this stunning architectural masterpiece in Ginza, home to a beautiful rooftop garden, giant modern art installations, and upscale boutiques.",
+     "placeName": "Ginza Six",
+     "mapPlace": {
+      "name": "Ginza Six",
+      "latitude": 35.6695686,
+      "longitude": 139.7638158
+     },
+     "hero": {
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Ginza_Six_02.jpg/960px-Ginza_Six_02.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "attribution": "ITA-ATU · CC BY-SA 4.0",
+      "source": "https://en.wikipedia.org/wiki/Ginza_Six",
+      "file": "0d42e60b.jpg"
+     }
+    },
+    {
+     "id": "B13492B3-990D-4F13-8CC4-D76D87D07DF7",
+     "type": "food",
+     "title": "Ginza Kagari",
+     "startHour": 13.8,
+     "durationHours": 1.2,
+     "costUSD": 35,
+     "details": "Savor a bowl of world-famous creamy chicken paitan ramen, the perfect rich comforting meal before you head to the airport.",
+     "placeName": "Ginza Kagari",
+     "mapPlace": {
+      "name": "Ginza Kagari",
+      "latitude": 35.6712185,
+      "longitude": 139.7613498
+     }
+    }
+   ]
+  }
+ ],
+ "hotels": [
+  {
+   "name": "Hotel Gracery Shinjuku",
+   "city": "Tokyo",
+   "checkIn": "2027-10-10T04:00:00Z",
+   "checkOut": "2027-10-13T04:00:00Z",
+   "costUSD": 540
+  },
+  {
+   "name": "Hakone Yutowa",
+   "city": "Hakone",
+   "checkIn": "2027-10-13T04:00:00Z",
+   "checkOut": "2027-10-15T04:00:00Z",
+   "costUSD": 480
+  },
+  {
+   "name": "The Millennium Mitsui Garden Hotel Tokyo",
+   "city": "Tokyo",
+   "checkIn": "2027-10-15T04:00:00Z",
+   "checkOut": "2027-10-16T04:00:00Z",
+   "costUSD": 210
+  }
+ ],
+ "_patches": [
+  [
+   "pin",
+   "Tokyo Metropolitan Government Building"
+  ],
+  [
+   "pin",
+   "Omoide Yokocho"
+  ],
+  [
+   "pin",
+   "Nakamise Shopping Street"
+  ],
+  [
+   "pin",
+   "Harajuku Gyozaro"
+  ],
+  [
+   "pin",
+   "Shibuya Crossing"
+  ],
+  [
+   "pin",
+   "Hakone Tozan Railway"
+  ],
+  [
+   "pin",
+   "Hakone Yuryon Onsen"
+  ],
+  [
+   "name",
+   "Hakone Yuryon Onsen"
+  ],
+  [
+   "pin",
+   "Lake Ashi Sightseeing Cruise"
+  ],
+  [
+   "pin",
+   "Hakone Old Tokaido Road Hike"
+  ],
+  [
+   "time",
+   "Hakone Old Tokaido Road Hike"
+  ],
+  [
+   "time",
+   "Amazake-chaya Tea House"
+  ],
+  [
+   "pin",
+   "Shimokitazawa Neighborhood Walk"
+  ],
+  [
+   "pin",
+   "Tsukiji Outer Market"
+  ]
+ ]
+}
