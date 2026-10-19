@@ -77,6 +77,16 @@
             </a>
           </div>
 
+          <!-- Desktop-only: lets visitors on a computer hand off to their iPhone -->
+          <div class="ios-handoff" hidden>
+            <img class="handoff-qr" src="assets/qr-appstore.svg" width="96" height="96" alt="QR code: scan with your iPhone camera to download Roamly" />
+            <div class="handoff-meta">
+              <span class="handoff-title">Roamly is an iPhone app</span>
+              <span class="handoff-sub">Point your iPhone camera at the code to download it free.</span>
+              <a class="handoff-link" href="sms:?&amp;body=Download%20Roamly%3A%20https%3A%2F%2Fapps.apple.com%2Fapp%2Fid6737066181">or text me the link</a>
+            </div>
+          </div>
+
           <p class="hero-note">Free on iPhone &middot; Requires iOS 17.5+</p>
         </div>
 
@@ -715,6 +725,13 @@
     if (heroVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       heroVideo.removeAttribute('autoplay');
       heroVideo.pause();
+    }
+
+    // Show the QR handoff card only on desktop-sized, non-iOS devices.
+    const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (!isIOS && window.matchMedia('(min-width: 769px)').matches) {
+      document.querySelectorAll('.ios-handoff').forEach(el => { el.hidden = false; });
     }
 
     const header = document.querySelector('.site-header');
