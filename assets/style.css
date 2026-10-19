@@ -114,8 +114,8 @@ img { display: block; max-width: 100%; }
 }
 
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 30px rgba(168, 197, 214, 0.3); }
-  50%      { box-shadow: 0 0 60px rgba(168, 197, 214, 0.5); }
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
 }
 
 @keyframes orbFloat1 {
@@ -595,6 +595,30 @@ img { display: block; max-width: 100%; }
 }
 
 .phone-hero .phone-mockup { width: 420px; }
+
+/* Hero screen recording in a CSS phone bezel. The recording already
+   includes the Dynamic Island, so no notch is drawn here. */
+.hero-video-frame {
+  position: relative;
+  z-index: 1;
+  width: 310px;
+  padding: 10px;
+  background: #1C1917;
+  border-radius: 52px;
+  box-shadow:
+    0 40px 80px -20px rgba(28,25,23,0.35),
+    0 16px 32px -12px rgba(28,25,23,0.2),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+.hero-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 600 / 1304;
+  border-radius: 42px;
+  background: #F3DCD3;
+  object-fit: cover;
+}
 .feature-visual .phone-mockup { width: 380px; }
 
 .phone-glow {
@@ -1435,6 +1459,10 @@ section { padding: 100px 0; }
 
 [data-theme="dark"] .phone-glow { opacity: 0.35; }
 
+[data-theme="dark"] .hero-video-frame {
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.16);
+}
+
 [data-theme="dark"] .about-photo img,
 [data-theme="dark"] .phone-mockup {
   filter: brightness(0.92);
@@ -1482,6 +1510,7 @@ section { padding: 100px 0; }
 
   .feature-grid { grid-template-columns: 1fr 1fr; }
   .phone-hero .phone-mockup { width: 320px; }
+  .hero-video-frame { width: 280px; }
   .feature-visual .phone-mockup { width: 320px; }
 
   .feature-block-inner {
@@ -1517,6 +1546,8 @@ section { padding: 100px 0; }
   .hero-form button { width: 100%; }
   .phone-hero .phone-mockup,
   .feature-visual .phone-mockup { width: 260px; }
+  .hero-video-frame { width: 250px; padding: 8px; border-radius: 44px; }
+  .hero-video { border-radius: 36px; }
   .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
   .hero-links { flex-direction: column; align-items: center; }
 

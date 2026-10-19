@@ -84,7 +84,11 @@
         <div class="hero-visual">
           <div class="phone phone-hero">
             <div class="phone-glow"></div>
-            <img class="phone-mockup" src="assets/screens/ai-mockup.png" alt="Hand holding an iPhone showing Roamly's AI trip planner" />
+            <div class="hero-video-frame">
+              <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-loop-poster.jpg" aria-label="Screen recording of Roamly generating a Sicily itinerary">
+                <source src="assets/hero-loop.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
         </div>
 
@@ -705,6 +709,13 @@
         contactForm.submit();
       }
     });
+
+    // Respect reduced-motion: show the poster frame instead of the looping demo.
+    const heroVideo = document.querySelector('.hero-video');
+    if (heroVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      heroVideo.removeAttribute('autoplay');
+      heroVideo.pause();
+    }
 
     const header = document.querySelector('.site-header');
     window.addEventListener('scroll', () => {
