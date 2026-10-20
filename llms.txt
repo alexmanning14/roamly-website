@@ -1,0 +1,13 @@
+# Roamly
+
+> Roamly is an AI travel planner for iPhone. Describe a trip and it builds a day-by-day itinerary with places, times, costs and a map, which you can edit, share and plan with friends. It also tracks where you've been on a 3D globe.
+
+- App Store: https://apps.apple.com/app/id6737066181
+- About the developer: https://roamly.us/about.html
+
+## Travel guides
+
+Each guide is a real Roamly trip with day-by-day times, cost estimates and map coordinates.
+
+- [7 Days on the Amalfi Coast and in Sicily: Positano, Capri, Ravello and Taormina](https://roamly.us/guides/amalfi-coast-sicily-7-day-itinerary): A mid-range 7-day itinerary for two: Positano, a boat day around Capri, Ravello and Amalfi, then a short flight to Taormina for Etna wine, the Alcantara gorge and Isola Bella. Day-by-day times, costs and a map.
+- [7 Days in Tokyo and Hakone: Neon Nights, Hot Springs and Mount Fuji](https://roamly.us/guides/tokyo-hakone-7-day-itinerary): A 7-day Tokyo and Hakone itinerary for two: Shinjuku nights, Asakusa mornings, a bullet train to the hot springs and a lake cruise toward Mount Fuji. Day-by-day times, costs and a map.

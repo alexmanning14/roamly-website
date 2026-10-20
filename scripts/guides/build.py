@@ -52,17 +52,43 @@ def stop_numbers(day):
 
 # ---------- photos ----------
 used = []
-def photo_file(key, width, crop=None):
-    src = os.path.join(SRC, key + ".jpg")
-    out = f"{key}-{width}.jpg"
-    dst = os.path.join(OUT, "img", out)
-    im = Image.open(src)
+def _load(key, crop=None):
+    im = Image.open(os.path.join(SRC, key + ".jpg")).convert("RGB")
     if crop:
         a, anchor = crop; h = int(im.width / a); top = int((im.height - h) * anchor)
         im = im.crop((0, top, im.width, top + h))
+    return im
+
+def _save(im, width, dst, fmt):
+    if os.path.exists(dst): return
     if im.width > width: im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
-    if not os.path.exists(dst): im.convert("RGB").save(dst, quality=82, optimize=True, progressive=True)
-    return out, im.width, im.height
+    if fmt == "webp": im.save(dst, "WEBP", quality=72, method=6)
+    else: im.save(dst, "JPEG", quality=80, optimize=True, progressive=True)
+
+def photo_file(key, width, crop=None):
+    """One JPEG at `width` (used for og:image and as the <img> fallback)."""
+    im = _load(key, crop); tag = "-c" if crop else ""
+    out = f"{key}{tag}-{width}.jpg"
+    _save(im, width, os.path.join(OUT, "img", out), "jpg")
+    w = min(width, im.width)
+    return out, w, round(im.height * w / im.width)
+
+def responsive(key, widths, crop=None, fallback=None):
+    """WebP at several widths plus one JPEG fallback; returns (picture-ready parts, intrinsic w, h)."""
+    im = _load(key, crop); tag = "-c" if crop else ""
+    widths = sorted({min(w, im.width) for w in widths})
+    srcset = []
+    for w in widths:
+        f = f"{key}{tag}-{w}.webp"; _save(im, w, os.path.join(OUT, "img", f), "webp"); srcset.append(f"img/{f} {w}w")
+    fb, fw, fh = photo_file(key, fallback or widths[len(widths) // 2], crop)
+    top = widths[-1]
+    return {"srcset": ", ".join(srcset), "src": f"img/{fb}"}, top, round(im.height * top / im.width)
+
+def picture(key, alt, widths, sizes, crop=None, extra=""):
+    r, w, h = responsive(key, widths, crop)
+    return (f'<picture><source type="image/webp" srcset="{r["srcset"]}" sizes="{sizes}">'
+            f'<img src="{r["src"]}" width="{w}" height="{h}" alt="{E(alt)}" {extra}></picture>')
+
 def short_artist(raw):
     """Commons 'Artist' fields can hold a photographer's whole usage note; keep just the name."""
     a = re.sub(r"\s+", " ", raw or "").strip()
@@ -76,15 +102,18 @@ def short_artist(raw):
 def credit(key):
     c = CRED[key]
     return f"{E(short_artist(c['artist']))} · {E(c['license'])}"
-def figure(key, cap, width):
+SINGLE = ([640, 1024, 1600], "(min-width: 1100px) 656px, calc(100vw - 32px)")
+PAIR = ([480, 800, 1200], "(min-width: 1100px) 330px, 50vw")
+def figure(key, cap, spec):
     used.append(key)
-    f, w, h = photo_file(key, width)
-    return (f'<figure class="ph" style="--ar:{w / h:.4f}"><img src="img/{f}" width="{w}" height="{h}" alt="{E(cap)}" loading="lazy" decoding="async">'
+    r, w, h = responsive(key, spec[0])
+    return (f'<figure class="ph" style="--ar:{w / h:.4f}"><picture><source type="image/webp" srcset="{r["srcset"]}" sizes="{spec[1]}">'
+            f'<img src="{r["src"]}" width="{w}" height="{h}" alt="{E(cap)}" loading="lazy" decoding="async"></picture>'
             f'<figcaption>{E(cap)}<span>{credit(key)}</span></figcaption></figure>')
 def photos(items):
     if not items: return ""
-    if len(items) == 1: return figure(*items[0], 1600)
-    return '<div class="ph-row">' + "".join(figure(k, c, 1200) for k, c in items) + "</div>"
+    if len(items) == 1: return figure(*items[0], SINGLE)
+    return '<div class="ph-row">' + "".join(figure(k, c, PAIR) for k, c in items) + "</div>"
 
 # ---------- itinerary (app-faithful) ----------
 def card(b, num, last):
@@ -95,7 +124,13 @@ def card(b, num, last):
     badge = f'<span class="badge">{num}</span>' if num else ""
     hero = ""
     if b.get("hero"):
-        hero = f'<img class="hero-img" src="img/blocks/{b["hero"]["file"]}" alt="" loading="lazy" decoding="async"><span class="hero-cr">{E(b["hero"].get("attribution") or "")}</span>'
+        jpg = os.path.join(OUT, "img", "blocks", b["hero"]["file"]); base = jpg[:-4]
+        bim = Image.open(jpg).convert("RGB")
+        for w in (480, 960): _save(bim, w, f"{base}-{w}.webp", "webp")
+        stem = os.path.basename(base)
+        hero = (f'<picture><source type="image/webp" srcset="img/blocks/{stem}-480.webp 480w, img/blocks/{stem}-960.webp 960w" '
+                f'sizes="(min-width: 1100px) 520px, calc(100vw - 130px)"><img class="hero-img" src="img/blocks/{b["hero"]["file"]}" alt="" loading="lazy" decoding="async"></picture>'
+                f'<span class="hero-cr">{E(b["hero"].get("attribution") or "")}</span>')
     pin = ' data-pinned="1"' if b.get("mapPlace") else ""
     details = f'<p>{E(b["details"])}</p>' if b.get("details") else ""
     return (f'<li class="row" id="b-{b["id"][:8].lower()}" data-block="{b["id"]}"{pin} style="--c:{col};min-height:{min_row(b["durationHours"]):.0f}px">'
@@ -154,7 +189,8 @@ def build(name):
     strip = "".join(f'<a class="dc" href="#day-{i + 1}" data-day="{i}"><small>DAY</small><span>{i + 1}</span></a>' for i in range(len(trip["days"])))
     glance = "".join(f"<div><dt>{E(k)}</dt><dd>{E(v.format(total=money(total)))}</dd></div>" for k, v in ed.GLANCE)
     faq = "".join(f"<details><summary>{E(q)}</summary><p>{E(a.format(total=money(total), each=money(each)))}</p></details>" for q, a in ed.FAQ)
-    hero_f, hw, hh = photo_file(ed.HERO[0], 2400, ed.HERO[2]); used.append(ed.HERO[0])
+    hero_f, _, _ = photo_file(ed.HERO[0], 1200, ed.HERO[2]); used.append(ed.HERO[0])
+    hero_pic = picture(ed.HERO[0], ed.HERO[1], [800, 1280, 1920, 2400], "(min-width: 1272px) 1240px, calc(100vw - 32px)", ed.HERO[2], 'fetchpriority="high"')
     hotels = "".join(f"<tr><td>{E(h['name'])}</td><td>{E(h['city'] or '')}</td><td class='n'>{money(h['costUSD'] or 0)}</td></tr>" for h in trip["hotels"])
     seen = list(dict.fromkeys(used))
     credits = "".join(f'<li><a href="{E(CRED[k]["page"])}">{E(CRED[k]["file"])}</a>, {E(short_artist(CRED[k]["artist"]))}, '
@@ -165,9 +201,22 @@ def build(name):
                         for d in trip["days"]]}
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a.format(total=money(total), each=money(each))}} for q, a in ed.FAQ]}
+    def place_ld(b):
+        p = {"@type": "TouristAttraction" if b["type"] in ("place", "activity") else "Place", "name": b["title"]}
+        if b.get("mapPlace"):
+            p["geo"] = {"@type": "GeoCoordinates", "latitude": b["mapPlace"]["latitude"], "longitude": b["mapPlace"]["longitude"]}
+        return p
+    trip_ld = {"@context": "https://schema.org", "@type": "TouristTrip", "name": ed.TITLE, "description": ed.DESCRIPTION,
+               "url": f"https://roamly.us/guides/{ed.SLUG}", "touristType": getattr(ed, "TOURIST_TYPE", "Couples"),
+               "offers": {"@type": "Offer", "price": round(total), "priceCurrency": "USD",
+                          "description": f"Estimated on-the-ground cost for {trip.get('travelerCount') or 1} travelers, excluding flights"},
+               "subTrip": [{"@type": "TouristTrip", "name": f"Day {i + 1}: {ed.DAYS[i]['title']}",
+                            "itinerary": {"@type": "ItemList", "itemListElement": [
+                                {"@type": "ListItem", "position": n + 1, "item": place_ld(b)} for n, b in enumerate(timeline_blocks(d))]}}
+                           for i, d in enumerate(trip["days"])]}
     art_ld = {"@context": "https://schema.org", "@type": "Article", "headline": ed.TITLE, "description": ed.DESCRIPTION,
               "image": [f"https://roamly.us/guides/img/{hero_f}"], "dateModified": "2026-10-19",
-              "author": {"@type": "Person", "name": "Alex Manning", "url": "https://roamly.us/about.html"},
+              "author": {"@type": "Person", "name": "Alex Manning", "url": "https://roamly.us/about.html#author", "jobTitle": "Founder of Roamly"},
               "publisher": {"@type": "Organization", "name": "Roamly", "url": "https://roamly.us"}}
     page = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -176,22 +225,23 @@ def build(name):
 <meta name="apple-itunes-app" content="app-id={APP_ID}, app-argument={open_url}">
 <meta property="og:type" content="article"><meta property="og:title" content="{E(ed.TITLE)}"><meta property="og:description" content="{E(ed.DESCRIPTION)}">
 <meta property="og:image" content="https://roamly.us/guides/img/{hero_f}"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="../assets/icon.png">
+<link rel="icon" href="../assets/icon-96.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito:wght@500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/guide.css">
 <script type="application/ld+json">{json.dumps(art_ld, ensure_ascii=False)}</script>
 <script type="application/ld+json">{json.dumps(faq_ld, ensure_ascii=False)}</script>
+<script type="application/ld+json">{json.dumps(trip_ld, ensure_ascii=False)}</script>
 </head><body>
-<header class="site"><div class="site-in"><a class="brand" href="../index.html"><img src="../assets/icon.png" alt="" width="34" height="34"><span>Roamly</span></a>
-<nav><a href="../index.html">Home</a><a href="#top">Guides</a><a class="get" href="{app}" aria-haspopup="dialog" aria-controls="get-pop">Get the app</a></nav>
+<header class="site"><div class="site-in"><a class="brand" href="../index.html"><img src="../assets/icon-96.png" alt="" width="34" height="34"><span>Roamly</span></a>
+<nav><a href="../index.html">Home</a><a href="index.html">Guides</a><a class="get" href="{app}" aria-haspopup="dialog" aria-controls="get-pop">Get the app</a></nav>
 <div class="get-pop" id="get-pop" role="dialog" aria-label="Get Roamly on your iPhone" hidden><div class="qr">{qr}</div>
 <div><b>Get Roamly on your iPhone</b><span>Point your iPhone camera at the code. It's free, and this trip opens with it.</span></div></div></div></header>
 <main id="top">
 <div class="head"><div class="crumbs">{" <span>›</span> ".join(E(c) for c in ed.CRUMBS)}</div>
 <h1>{E(ed.TITLE)}</h1><p class="dek">{E(ed.DEK)}</p>
-<div class="byline"><img src="../assets/alex-capri.jpg" alt="" width="44" height="44"><div><b>Alex Manning</b><span>Founder of Roamly · Updated {ed.UPDATED} · {ed.READ_MIN} min read</span></div></div></div>
-<figure class="hero"><img src="img/{hero_f}" width="{hw}" height="{hh}" alt="{E(ed.HERO[1])}" fetchpriority="high"><figcaption>{E(ed.HERO[1])}<span>{credit(ed.HERO[0])}</span></figcaption></figure>
+<div class="byline"><img src="../assets/alex-avatar.jpg" alt="" width="44" height="44"><div><b><a class="author" href="../about.html#author" rel="author">Alex Manning</a></b><span>Founder of Roamly · Updated {ed.UPDATED} · {ed.READ_MIN} min read</span></div></div></div>
+<figure class="hero">{hero_pic}<figcaption>{E(ed.HERO[1])}<span>{credit(ed.HERO[0])}</span></figcaption></figure>
 <div class="layout"><article class="main">
 <dl class="glance">{glance}</dl>
 <div class="prose intro">{"".join(f"<p>{p}</p>" for p in ed.INTRO)}</div>
@@ -228,6 +278,97 @@ def build(name):
     path = os.path.join(OUT, ed.SLUG + ".html")
     open(path, "w").write(page)
     print(f"{path}  {len(page) // 1024} KB · photos {len(seen)} · em-dashes {page.count(chr(8212))} · total {money(total)}")
+    cities = list(dict.fromkeys(d["area"].split(" · ")[0] for d in ed.DAYS))
+    return {"slug": ed.SLUG, "title": ed.TITLE, "dek": ed.DEK, "description": ed.DESCRIPTION, "hero": ed.HERO, "og": hero_f,
+            "total": total, "travelers": trip.get("travelerCount") or 1, "days": len(trip["days"]), "cities": cities,
+            "country": ed.CRUMBS[1], "updated": getattr(ed, "UPDATED_ISO", "2026-10-19"), "label": ed.TRIP_LABEL}
+
+GUIDES = ["amalfi_sicily", "tokyo_hakone"]  # newest first; drives the index, sitemap and llms.txt
+
+def build_index(metas):
+    cards = []
+    for m in metas:
+        pic = picture(m["hero"][0], m["hero"][1], [640, 960, 1280], "(min-width: 1100px) 600px, calc(100vw - 32px)", m["hero"][2], 'loading="lazy" decoding="async"')
+        cards.append(f'''<a class="gcard" href="{m["slug"]}.html">{pic}
+<div class="gcard-body"><div class="gcard-meta"><span>{E(m["country"])}</span><span>{m["days"]} days</span><span>{money(m["total"])} for {m["travelers"]}</span></div>
+<h2>{E(m["title"])}</h2><p>{E(m["dek"])}</p><span class="gcard-go">Read the guide →</span></div></a>''')
+    items = [{"@type": "ListItem", "position": i + 1, "url": f"https://roamly.us/guides/{m['slug']}", "name": m["title"]} for i, m in enumerate(metas)]
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Roamly travel guides", "url": "https://roamly.us/guides/",
+          "description": "Day-by-day travel itineraries built in Roamly, with real times, costs and maps.",
+          "mainEntity": {"@type": "ItemList", "itemListElement": items}}
+    app = f"https://apps.apple.com/app/id{APP_ID}?ct=blog-guides-index"
+    qr = open(os.path.join(HERE, "qr", metas[0]["slug"] + ".svg")).read()
+    page = f'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Travel Guides and Day-by-Day Itineraries | Roamly</title>
+<meta name="description" content="Day-by-day travel itineraries built in Roamly's AI trip planner and checked stop by stop, with real times, costs and maps. Open any of them in the app and make it yours.">
+<link rel="canonical" href="https://roamly.us/guides/"><meta name="apple-itunes-app" content="app-id={APP_ID}">
+<meta property="og:type" content="website"><meta property="og:title" content="Roamly travel guides"><meta property="og:image" content="https://roamly.us/guides/img/{metas[0]["og"]}">
+<link rel="icon" href="../assets/icon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito:wght@500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/guide.css"><script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script></head><body>
+<header class="site"><div class="site-in"><a class="brand" href="../index.html"><img src="../assets/icon-96.png" alt="" width="34" height="34"><span>Roamly</span></a>
+<nav><a href="../index.html">Home</a><a href="index.html" aria-current="page">Guides</a><a class="get" href="{app}" aria-haspopup="dialog" aria-controls="get-pop">Get the app</a></nav>
+<div class="get-pop" id="get-pop" role="dialog" aria-label="Get Roamly on your iPhone" hidden><div class="qr">{qr}</div>
+<div><b>Get Roamly on your iPhone</b><span>Point your iPhone camera at the code. It's free.</span></div></div></div></header>
+<main class="gindex"><div class="head"><div class="crumbs">Guides</div><h1>Trips you can open and make your own</h1>
+<p class="dek">Every guide here is a real trip built in Roamly's AI planner, checked stop by stop and written up with the times, costs and map from the app. Open one in Roamly and change anything.</p></div>
+<div class="glist">{"".join(cards)}</div></main>
+<footer class="foot"><span>© 2026 Roamly</span><span>Prices are estimates and change. Check opening hours before you go.</span></footer>
+<script src="assets/guide.js"></script></body></html>'''
+    open(os.path.join(OUT, "index.html"), "w").write(page)
+    print("guides/index.html", len(page) // 1024, "KB")
+
+def build_home_teaser(metas):
+    """Writes the guide cards into the homepage between the GUIDES markers."""
+    cards = []
+    for m in metas[:3]:
+        r, w, h = responsive(m["hero"][0], [640, 960, 1280], m["hero"][2])
+        srcset = r["srcset"].replace("img/", "guides/img/")
+        cards.append(f'''          <a class="guide-card" href="guides/{m["slug"]}.html">
+            <picture><source type="image/webp" srcset="{srcset}" sizes="(min-width: 1100px) 540px, calc(100vw - 48px)"><img src="guides/{r["src"]}" width="{w}" height="{h}" alt="{E(m["hero"][1])}" loading="lazy" decoding="async"></picture>
+            <div class="guide-card-body"><span class="guide-meta">{E(m["country"])} · {m["days"]} days · {money(m["total"])} for {m["travelers"]}</span>
+            <h3>{E(m["title"])}</h3><p>{E(m["dek"])}</p></div>
+          </a>''')
+    block = f'''    <!-- GUIDES:START (generated by scripts/guides/build.py) -->
+    <section class="features guides-teaser" id="guides">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Guides</span>
+          <h2>Trips you can open and make your own.</h2>
+          <p>Real Roamly itineraries, written up day by day with the times, costs and map from the app.</p>
+        </div>
+        <div class="guide-grid stagger">
+{chr(10).join(cards)}
+        </div>
+        <p class="guides-more"><a href="guides/">See all guides &rarr;</a></p>
+      </div>
+    </section>
+    <!-- GUIDES:END -->'''
+    p = os.path.join(SITE, "index.html"); home = open(p).read()
+    home = re.sub(r"    <!-- GUIDES:START.*?<!-- GUIDES:END -->", lambda _: block, home, flags=re.S)
+    open(p, "w").write(home)
+    print("homepage guides section:", len(cards), "cards")
+
+def build_site_files(metas):
+    pages = [("https://roamly.us/", "2026-10-19"), ("https://roamly.us/about.html", "2026-10-19"), ("https://roamly.us/privacy.html", "2026-10-19"),
+             ("https://roamly.us/guides/", metas[0]["updated"])] + [(f"https://roamly.us/guides/{m['slug']}", m["updated"]) for m in metas]
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + \
+          "".join(f"  <url><loc>{u}</loc><lastmod>{d}</lastmod></url>\n" for u, d in pages) + "</urlset>\n"
+    open(os.path.join(SITE, "sitemap.xml"), "w").write(xml)
+    llms = ["# Roamly", "",
+            "> Roamly is an AI travel planner for iPhone. Describe a trip and it builds a day-by-day itinerary with places, times, costs and a map, "
+            "which you can edit, share and plan with friends. It also tracks where you've been on a 3D globe.", "",
+            "- App Store: https://apps.apple.com/app/id6737066181", "- About the developer: https://roamly.us/about.html", "",
+            "## Travel guides", "",
+            "Each guide is a real Roamly trip with day-by-day times, cost estimates and map coordinates.", ""] + \
+           [f"- [{m['title']}](https://roamly.us/guides/{m['slug']}): {m['description']}" for m in metas] + [""]
+    open(os.path.join(SITE, "llms.txt"), "w").write("\n".join(llms))
+    print("sitemap.xml and llms.txt written,", len(pages), "URLs")
 
 if __name__ == "__main__":
-    build(sys.argv[1] if len(sys.argv) > 1 else "tokyo_hakone")
+    names = sys.argv[1:] or GUIDES
+    metas = [build(n) for n in names]
+    if not sys.argv[1:]:
+        build_index(metas); build_home_teaser(metas); build_site_files(metas)
